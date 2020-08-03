@@ -11,7 +11,7 @@ import SwiftUI
 #if canImport(AppKit)
 import AppKit
 
-extension NSColor {
+public extension NSColor {
     
     public var alphaValue: CGFloat? {
         get {
@@ -484,7 +484,7 @@ extension NSColor {
     
     public func toName() -> String {
         let colorThesaurus = ColorThesaurus.closestMatch(color: self)
-        return colorThesaurus.name
+        return colorThesaurus.color.name
     }
     
     public func toHex() -> String {

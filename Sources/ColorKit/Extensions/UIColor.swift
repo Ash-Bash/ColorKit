@@ -10,7 +10,7 @@ import SwiftUI
 #if canImport(UIKit)
 import UIKit
 
-extension UIColor {
+public extension UIColor {
     
     public var p3: UIColor {
         let col = CIColor(color: self)
@@ -599,7 +599,7 @@ extension UIColor {
     
     public func toName() -> String {
         let colorThesaurus = ColorThesaurus.closestMatch(color: self)
-        return colorThesaurus.name
+        return colorThesaurus.color.name
     }
     
     public func toHex() -> String {
