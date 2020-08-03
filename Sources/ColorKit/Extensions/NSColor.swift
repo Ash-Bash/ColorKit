@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-#if os(macOS)
+#if canImport(AppKit)
 import AppKit
 
 extension NSColor {
@@ -483,11 +483,9 @@ extension NSColor {
     }
     
     public func toName() -> String {
-        for name in ColorNames.names {
-            if self.redValue == name.red && self.greenValue == name.green && self.blueValue == name.blue && self.alphaValue == name.alpha {
-                return name.name
-            }
-        }
+        let colorThesaurus = ColorThesaurus.closestMatch(color: self)
+        let match = colorThesaurus.closestMatch()
+        return match.name
     }
     
     public func toHex() -> String {

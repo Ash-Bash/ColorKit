@@ -400,11 +400,9 @@ public extension Color {
     }
     
     public func toName() -> String {
-        for name in ColorNames.names {
-            if self.components().r == name.red && self.components().g == name.green && self.components().b == name.blue && self.components().a == name.alpha {
-                return name.name
-            }
-        }
+        let colorThesaurus = ColorThesaurus.closestMatch(color: self)
+        let match = colorThesaurus.closestMatch()
+        return match.name
     }
     
     public func toRGBString() -> String {
