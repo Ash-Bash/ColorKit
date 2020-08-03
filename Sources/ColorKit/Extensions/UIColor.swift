@@ -153,7 +153,7 @@ extension UIColor {
         var red: Double = Double(color.redValue! * 255)
         var green: Double = Double(color.greenValue! * 255)
         var blue: Double = Double(color.blueValue! * 255)
-        var cfactor: Double = -(correctionFactor + 0.01)
+        var cfactor: Double = -(factor + 0.01)
         
         cfactor = 1 + cfactor
         red *= cfactor
