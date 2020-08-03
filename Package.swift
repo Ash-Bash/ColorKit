@@ -5,6 +5,12 @@ import PackageDescription
 
 let package = Package(
     name: "ColorKit",
+    platforms: [
+        SupportedPlatform.macOS(SupportedPlatform.MacOSVersion.v10_16),
+        SupportedPlatform.iOS(SupportedPlatform.IOSVersion.v14),
+        SupportedPlatform.watchOS(SupportedPlatform.WatchOSVersion.v7),
+        SupportedPlatform.tvOS(SupportedPlatform.TVOSVersion.v14)
+    ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
