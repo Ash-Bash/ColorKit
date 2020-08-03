@@ -10,7 +10,7 @@ import SwiftUI
 
 #if canImport(UIKit)
 import UIKit
-#elseif canImport(AppKit)
+#elseif canImport(AppKit) && os(macOS)
 import AppKit
 #endif
 
@@ -34,7 +34,7 @@ public class ColorThesaurus  {
     }
     #endif
     
-    #if canImport(AppKit)
+    #if canImport(AppKit) && os(macOS)
     public static func closestMatch(color: NSColor) -> ColorMatch {
         let value: ColorName = ColorName(Double(color.redValue!), Double(color.greenValue!), Double(color.blueValue!), Double(color.alphaValue!))
         return self.match(value: value)

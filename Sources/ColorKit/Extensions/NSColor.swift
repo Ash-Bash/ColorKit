@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-#if canImport(AppKit)
+#if canImport(AppKit) && os(macOS)
 import AppKit
 
 public extension NSColor {
