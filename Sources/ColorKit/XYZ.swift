@@ -8,6 +8,8 @@
 import Foundation
 
 struct XYZ: CustomStringConvertible {
+    
+    // Variables
     public let x: Double
     public let y: Double
     public let z: Double

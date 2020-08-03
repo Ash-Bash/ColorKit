@@ -9,6 +9,7 @@ import Foundation
 
 struct HSL: CustomStringConvertible {
     
+    // Variables
     public let hue: Double //0-360
     public let saturation: Double // 0-100
     public let lightness: Double // 0-100

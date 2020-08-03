@@ -8,6 +8,8 @@
 import Foundation
 
 struct LAB: CustomStringConvertible {
+    
+    // Variables
     public let l: Double
     public let a: Double
     public let b: Double

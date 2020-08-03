@@ -8,6 +8,8 @@
 import Foundation
 
 public struct ColorMatch {
+    
+    // Variables
     let color: ColorName
     let distance: ColorDistance
 }
