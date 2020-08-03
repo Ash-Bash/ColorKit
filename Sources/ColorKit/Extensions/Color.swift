@@ -401,8 +401,7 @@ public extension Color {
     
     public func toName() -> String {
         let colorThesaurus = ColorThesaurus.closestMatch(color: self)
-        let match = colorThesaurus.closestMatch()
-        return match.name
+        return colorThesaurus.name
     }
     
     public func toRGBString() -> String {
