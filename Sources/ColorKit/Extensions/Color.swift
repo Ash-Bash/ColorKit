@@ -531,7 +531,7 @@ public extension Color {
         let components = self.components()
         return UIColor(red: components.r, green: components.g, blue: components.b, alpha: components.a)
     }
-    #elseif os(OSX)
+    #elseif os(macOS)
     public func toNSColor() -> NSColor {
         let components = self.components()
         return NSColor(red: components.r, green: components.g, blue: components.b, alpha: components.a)
@@ -545,7 +545,7 @@ public extension Color {
         
         #if os(iOS) || os(tvOS) || os(watchOS)
         self.toUIColor().getHue(&h, saturation: &s, brightness: &b, alpha: nil)
-        #elseif os(OSX)
+        #elseif os(macOS)
         self.toNSColor().getHue(&h, saturation: &s, brightness: &b, alpha: nil)
         #endif
         
@@ -564,7 +564,7 @@ public extension Color {
         g = self.toUIColor().components().g
         b = self.toUIColor().components().b
         a = self.toUIColor().components().a
-        #elseif os(OSX)
+        #elseif os(macOS)
         r = self.toNSColor().components().r
         g = self.toNSColor().components().g
         b = self.toNSColor().components().b
@@ -576,13 +576,13 @@ public extension Color {
     
     public func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat, hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
 
-        var r: CGFloat
-        var g: CGFloat
-        var b: CGFloat
-        var a: CGFloat
-        var hue: CGFloat
-        var saturation: CGFloat
-        var brightness: CGFloat
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        var hue: CGFloat = 0
+        var saturation: CGFloat = 0
+        var brightness: CGFloat = 0
         
         r = self.toRGBAComponents().r
         g = self.toRGBAComponents().g

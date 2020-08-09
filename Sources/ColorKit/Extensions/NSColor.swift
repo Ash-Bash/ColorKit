@@ -525,13 +525,13 @@ public extension NSColor {
     
     public func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat, hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
 
-        var r: CGFloat
-        var g: CGFloat
-        var b: CGFloat
-        var a: CGFloat
-        var hue: CGFloat
-        var saturation: CGFloat
-        var brightness: CGFloat
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        var hue: CGFloat = 0
+        var saturation: CGFloat = 0
+        var brightness: CGFloat = 0
         
         r = self.toRGBAComponents().r
         g = self.toRGBAComponents().g
