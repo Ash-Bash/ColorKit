@@ -629,12 +629,25 @@ public extension UIColor {
     
     public func toRGBAComponents() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
         
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        
         self.getRed(&r, green: &g, blue: &b, alpha: &a)
         return (r, g, b, a)
     }
     
     public func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat, hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
 
+        var r: CGFloat
+        var g: CGFloat
+        var b: CGFloat
+        var a: CGFloat
+        var hue: CGFloat
+        var saturation: CGFloat
+        var brightness: CGFloat
+        
         r = self.toRGBAComponents().r
         g = self.toRGBAComponents().g
         b = self.toRGBAComponents().b

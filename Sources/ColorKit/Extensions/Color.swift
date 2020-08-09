@@ -570,6 +570,14 @@ public extension Color {
     
     public func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat, hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
 
+        var r: CGFloat
+        var g: CGFloat
+        var b: CGFloat
+        var a: CGFloat
+        var hue: CGFloat
+        var saturation: CGFloat
+        var brightness: CGFloat
+        
         r = self.toRGBAComponents().r
         g = self.toRGBAComponents().g
         b = self.toRGBAComponents().b
