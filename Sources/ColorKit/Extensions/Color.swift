@@ -16,11 +16,11 @@ import SwiftUI
 
 public extension Color {
     
-    public func setRGB(red: Double, green: Double, blue: Double) {
+    public mutating func setRGB(red: Double, green: Double, blue: Double) {
         self = Color(red: red, green: green, blue: blue)
     }
     
-    public func setHSB(hue: Double, saturation: Double, brightness: Double) {
+    public mutating func setHSB(hue: Double, saturation: Double, brightness: Double) {
         self = Color(hue: hue, saturation: saturation, brightness: brightness)
     }
     
