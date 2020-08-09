@@ -35,9 +35,9 @@ public extension Color {
     public static func darkness(color: Color, factor: Double) -> Color {
         
         let coms = color.components()
-        var red = CGFloat(coms.r! * 255)
-        var green = CGFloat(coms.g! * 255)
-        var blue = CGFloat(coms.b! * 255)
+        var red = CGFloat(coms.r * 255)
+        var green = CGFloat(coms.g * 255)
+        var blue = CGFloat(coms.b * 255)
         //var alpha = 1.0
         
         var cfactor: CGFloat = -CGFloat(factor + 0.01)
@@ -65,9 +65,9 @@ public extension Color {
     public func darkness(factor: Double) -> Color {
         
         let coms = self.components()
-        var red = CGFloat(coms.r! * 255)
-        var green = CGFloat(coms.g! * 255)
-        var blue = CGFloat(coms.b! * 255)
+        var red = CGFloat(coms.r * 255)
+        var green = CGFloat(coms.g * 255)
+        var blue = CGFloat(coms.b * 255)
         //var alpha = 1.0
         
         var cfactor: CGFloat = -CGFloat(factor + 0.01)
@@ -95,9 +95,9 @@ public extension Color {
     public static func lightness(color: Color, factor: Double) -> Color {
         
         let coms = color.components()
-        var red = CGFloat(coms.r! * 255)
-        var green = CGFloat(coms.g! * 255)
-        var blue = CGFloat(coms.b! * 255)
+        var red = CGFloat(coms.r * 255)
+        var green = CGFloat(coms.g * 255)
+        var blue = CGFloat(coms.b * 255)
         //var alpha = 1.0
         
         var cfactor: CGFloat = CGFloat(factor + 0.01)
@@ -131,9 +131,9 @@ public extension Color {
     public func lightness(factor: Double) -> Color {
         
         let coms = self.components()
-        var red = CGFloat(coms.r! * 255)
-        var green = CGFloat(coms.g! * 255)
-        var blue = CGFloat(coms.b! * 255)
+        var red = CGFloat(coms.r * 255)
+        var green = CGFloat(coms.g * 255)
+        var blue = CGFloat(coms.b * 255)
         //var alpha = 1.0
         
         var cfactor: CGFloat = CGFloat(factor + 0.01)
@@ -167,9 +167,9 @@ public extension Color {
     public static func getHexString(color: Color) -> String {
         
         let coms = color.components()
-        let r = CGFloat(coms.r!)
-        let g = CGFloat(coms.g!)
-        let b = CGFloat(coms.b!)
+        let r = CGFloat(coms.r)
+        let g = CGFloat(coms.g)
+        let b = CGFloat(coms.b)
         //var a = CGFloat(1)
         
         return String(
@@ -223,9 +223,9 @@ public extension Color {
         var d = CGFloat(0)
 
         let coms = color.components()
-        let r = CGFloat(coms.r!)
-        let g = CGFloat(coms.g!)
-        let b = CGFloat(coms.b!)
+        let r = CGFloat(coms.r)
+        let g = CGFloat(coms.g)
+        let b = CGFloat(coms.b)
 
         // Counting the perceptive luminance - human eye favors green color...
         let luminance = 1 - ((0.299 * r) + (0.587 * g) + (0.114 * b))
@@ -244,9 +244,9 @@ public extension Color {
         var d = CGFloat(0)
 
         let coms = self.components()
-        let r = CGFloat(coms.r!)
-        let g = CGFloat(coms.g!)
-        let b = CGFloat(coms.b!)
+        let r = CGFloat(coms.r)
+        let g = CGFloat(coms.g)
+        let b = CGFloat(coms.b)
 
         // Counting the perceptive luminance - human eye favors green color...
         let luminance = 1 - ((0.299 * r) + (0.587 * g) + (0.114 * b))
@@ -263,9 +263,9 @@ public extension Color {
     public static func systemColorScheme(color: Color) -> ColorScheme {
         
         let coms = color.components()
-        let r = CGFloat(coms.r!)
-        let g = CGFloat(coms.g!)
-        let b = CGFloat(coms.b!)
+        let r = CGFloat(coms.r)
+        let g = CGFloat(coms.g)
+        let b = CGFloat(coms.b)
 
         // Counting the perceptive luminance - human eye favors green color...
         let luminance = 1 - ((0.299 * r) + (0.587 * g) + (0.114 * b))
@@ -280,9 +280,9 @@ public extension Color {
     public func colorScheme() -> ColorScheme {
         
         let coms = self.components()
-        let r = CGFloat(coms.r!)
-        let g = CGFloat(coms.g!)
-        let b = CGFloat(coms.b!)
+        let r = CGFloat(coms.r)
+        let g = CGFloat(coms.g)
+        let b = CGFloat(coms.b)
         //var a = CGFloat(1)
 
         // Counting the perceptive luminance - human eye favors green color...
@@ -298,9 +298,9 @@ public extension Color {
     public static func brightness(color: Color, factor: Double) -> Color {
         
         let coms = color.components()
-        var red: Double? = Double(coms.r!) * 255
-        var green: Double? = Double(coms.g!) * 255
-        var blue: Double? = Double(coms.b!) * 255
+        var red: Double? = Double(coms.r) * 255
+        var green: Double? = Double(coms.g) * 255
+        var blue: Double? = Double(coms.b) * 255
         var cfactor: Double = factor + 0.01
         
         if (factor < 0) {
@@ -331,9 +331,9 @@ public extension Color {
             
             let color = colors[i]
             let coms = color.components()
-            let r: CGFloat = CGFloat(coms.r!)
-            let g: CGFloat = CGFloat(coms.g!)
-            let b: CGFloat = CGFloat(coms.b!)
+            let r: CGFloat = CGFloat(coms.r)
+            let g: CGFloat = CGFloat(coms.g)
+            let b: CGFloat = CGFloat(coms.b)
             
             redArray.append(r)
             greenArray.append(g)
@@ -371,8 +371,8 @@ public extension Color {
         case 0: return self
         case 1: return color
         default:
-            let (r1, g1, b1, a1): (CGFloat, CGFloat, CGFloat, CGFloat) = (coms1.r!, coms1.g!, coms1.b!, coms1.a!)
-            let (r2, g2, b2, a2): (CGFloat, CGFloat, CGFloat, CGFloat) = (coms2.r!, coms2.g!, coms2.b!, coms2.a!)
+            let (r1, g1, b1, a1): (CGFloat, CGFloat, CGFloat, CGFloat) = (coms1.r, coms1.g, coms1.b, coms1.a)
+            let (r2, g2, b2, a2): (CGFloat, CGFloat, CGFloat, CGFloat) = (coms2.r, coms2.g, coms2.b, coms2.a)
 
             return Color(red: Double(CGFloat(r1 + (r2 - r1) * percentage)),
                          green: Double(CGFloat(g1 + (g2 - g1) * percentage)),
@@ -386,14 +386,14 @@ public extension Color {
         let coms1 = self.components()
         let coms2 = color.components()
         
-        let r1 : CGFloat = coms1.r!
-        let g1 : CGFloat = coms1.g!
-        let b1 : CGFloat = coms1.b!
-        let a1 : CGFloat = coms1.a!
-        let r2 : CGFloat = coms2.r!
-        let g2 : CGFloat = coms2.g!
-        let b2 : CGFloat = coms2.b!
-        let a2 : CGFloat = coms2.a!
+        let r1 : CGFloat = coms1.r
+        let g1 : CGFloat = coms1.g
+        let b1 : CGFloat = coms1.b
+        let a1 : CGFloat = coms1.a
+        let r2 : CGFloat = coms2.r
+        let g2 : CGFloat = coms2.g
+        let b2 : CGFloat = coms2.b
+        let a2 : CGFloat = coms2.a
         
         return
             abs(r1 - r2) <= tolerance &&
@@ -405,10 +405,10 @@ public extension Color {
     public func inverse() -> Color {
         
         let coms = self.components()
-        let r: CGFloat = CGFloat(coms.r!)
-        let g: CGFloat = CGFloat(coms.g!)
-        let b: CGFloat = CGFloat(coms.b!)
-        let a: CGFloat = CGFloat(coms.a!)
+        let r: CGFloat = CGFloat(coms.r)
+        let g: CGFloat = CGFloat(coms.g)
+        let b: CGFloat = CGFloat(coms.b)
+        let a: CGFloat = CGFloat(coms.a)
 
         return Color(red: 1.0-Double(r), green: 1.0 - Double(g), blue: 1.0 - Double(b), opacity: Double(a))
     }
@@ -421,9 +421,9 @@ public extension Color {
     public func toRGBString() -> String {
         
         let coms = self.components()
-        let r: CGFloat = CGFloat(coms.r!)
-        let g: CGFloat = CGFloat(coms.g!)
-        let b: CGFloat = CGFloat(coms.b!)
+        let r: CGFloat = CGFloat(coms.r)
+        let g: CGFloat = CGFloat(coms.g)
+        let b: CGFloat = CGFloat(coms.b)
         //let a: CGFloat = CGFloat(coms.a)
 
         return "(\(Int((r * 255))), \(Int((g * 255))), \(Int((b * 255))))"
@@ -431,9 +431,9 @@ public extension Color {
     public func toFloatString() -> String {
         
         let coms = self.components()
-        let r: CGFloat = CGFloat(coms.r!)
-        let g: CGFloat = CGFloat(coms.g!)
-        let b: CGFloat = CGFloat(coms.b!)
+        let r: CGFloat = CGFloat(coms.r)
+        let g: CGFloat = CGFloat(coms.g)
+        let b: CGFloat = CGFloat(coms.b)
         //let a: CGFloat = CGFloat(coms.a)
 
         return "(\(r), \(g), \(b))"
@@ -442,9 +442,9 @@ public extension Color {
     public func toHex() -> String {
         
         let coms = self.components()
-        let r: CGFloat = CGFloat(coms.r!)
-        let g: CGFloat = CGFloat(coms.g!)
-        let b: CGFloat = CGFloat(coms.b!)
+        let r: CGFloat = CGFloat(coms.r)
+        let g: CGFloat = CGFloat(coms.g)
+        let b: CGFloat = CGFloat(coms.b)
         //let a: CGFloat = CGFloat(coms.a)
 
         return String(
@@ -459,9 +459,9 @@ public extension Color {
     public static func systemTheme(color: Color) -> UIUserInterfaceStyle {
         
         let coms = color.components()
-        let r = CGFloat(coms.r!)
-        let g = CGFloat(coms.g!)
-        let b = CGFloat(coms.b!)
+        let r = CGFloat(coms.r)
+        let g = CGFloat(coms.g)
+        let b = CGFloat(coms.b)
         
         // Counting the perceptive luminance - human eye favors green color...
         let luminance = 1 - ((0.299 * r) + (0.587 * g) + (0.114 * b))
@@ -476,9 +476,9 @@ public extension Color {
     public func systemTheme() -> UIUserInterfaceStyle {
         
         let coms = self.components()
-        let r = CGFloat(coms.r!)
-        let g = CGFloat(coms.g!)
-        let b = CGFloat(coms.b!)
+        let r = CGFloat(coms.r)
+        let g = CGFloat(coms.g)
+        let b = CGFloat(coms.b)
 
         // Counting the perceptive luminance - human eye favors green color...
         let luminance = 1 - ((0.299 * r) + (0.587 * g) + (0.114 * b))
@@ -493,9 +493,9 @@ public extension Color {
     public static func statusBarStyle(color: Color) -> UIStatusBarStyle {
         
         let coms = color.components()
-        let r = CGFloat(coms.r!)
-        let g = CGFloat(coms.g!)
-        let b = CGFloat(coms.b!)
+        let r = CGFloat(coms.r)
+        let g = CGFloat(coms.g)
+        let b = CGFloat(coms.b)
         var a = CGFloat(1)
 
         // Counting the perceptive luminance - human eye favors green color...
@@ -511,9 +511,9 @@ public extension Color {
     public func statusBarStyle() -> UIStatusBarStyle {
         
         let coms = self.components()
-        var r = CGFloat(coms.r!)
-        var g = CGFloat(coms.g!)
-        var b = CGFloat(coms.b!)
+        var r = CGFloat(coms.r)
+        var g = CGFloat(coms.g)
+        var b = CGFloat(coms.b)
         var a = CGFloat(1)
 
         // Counting the perceptive luminance - human eye favors green color...
@@ -529,7 +529,7 @@ public extension Color {
     public func toUIColor() -> UIColor {
 
         let components = self.components()
-        return UIColor(red: components.r!, green: components.g!, blue: components.b!, alpha: components.a!)
+        return UIColor(red: components.r, green: components.g, blue: components.b, alpha: components.a)
     }
     #elseif os(macOS)
     public func toNSColor() -> NSColor {
@@ -538,60 +538,55 @@ public extension Color {
     }
     #endif
     
-    public func toHSBComponents() -> (hue: CGFloat?, saturation: CGFloat?, brightness: CGFloat?) {
-        var h: CGFloat? = 0.0
-        var s: CGFloat? = 0.0
-        var b: CGFloat? = 0.0
+    public func toHSBComponents() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
         
-        #if os(iOS) || os(tvOS) || os(watchOS)
-        self.toUIColor().getHue(&h!, saturation: &s!, brightness: &b!, alpha: nil)
-        #elseif os(macOS)
-        self.toNSColor().getHue(&h, saturation: &s, brightness: &b, alpha: nil)
+        var h: CGFloat = 0.0
+        var s: CGFloat = 0.0
+        var b: CGFloat = 0.0
+        
+        #if canImport(UIKit)
+        typealias NativeColor = UIColor
+        #elseif canImport(AppKit) && os(macOS)
+        typealias NativeColor = NSColor
         #endif
+
+        guard NativeColor(self).getHue(&h, saturation: &s, brightness: &b, alpha: nil) else {
+            // You can handle the failure here as you want
+            return (0, 0, 0, 0)
+        }
         
         return (h,s,b)
     }
     
-    public func toRGBAComponents() -> (r: CGFloat?, g: CGFloat?, b: CGFloat?, a: CGFloat?) {
+    public func toRGBAComponents() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
         
-        var r: CGFloat? = 0
-        var g: CGFloat? = 0
-        var b: CGFloat? = 0
-        var a: CGFloat? = 0
-        
-        #if os(iOS) || os(tvOS) || os(watchOS)
-        r = self.toUIColor().components().r!
-        g = self.toUIColor().components().g!
-        b = self.toUIColor().components().b!
-        a = self.toUIColor().components().a!
-        #elseif os(macOS)
-        r = self.toNSColor().components().r!
-        g = self.toNSColor().components().g!
-        b = self.toNSColor().components().b!
-        a = self.toNSColor().components().a!
+        #if canImport(UIKit)
+        typealias NativeColor = UIColor
+        #elseif canImport(AppKit) && os(macOS)
+        typealias NativeColor = NSColor
         #endif
-        
-        return (r, g, b, a)
+
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+
+        guard NativeColor(self).getRed(&red, green: &green, blue: &blue, alpha: &alpha) else {
+            // You can handle the failure here as you want
+            return (0, 0, 0, 0)
+        }
+
+        return (red, green, blue, alpha)
     }
     
-    public func components() -> (r: CGFloat?, g: CGFloat?, b: CGFloat?, a: CGFloat?, hue: CGFloat?, saturation: CGFloat?, brightness: CGFloat?) {
-
-        var r: CGFloat? = 0
-        var g: CGFloat? = 0
-        var b: CGFloat? = 0
-        var a: CGFloat? = 0
-        var hue: CGFloat? = 0
-        var saturation: CGFloat? = 0
-        var brightness: CGFloat? = 0
+    public func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat, hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
         
-        r = self.toRGBAComponents().r
-        g = self.toRGBAComponents().g
-        b = self.toRGBAComponents().b
-        a = self.toRGBAComponents().a
-        hue = self.toHSBComponents().hue
-        saturation = self.toHSBComponents().saturation
-        brightness = self.toHSBComponents().brightness
-        
-        return (r, g, b, a, hue, saturation, brightness)
+        return (self.toRGBAComponents().r,
+                self.toRGBAComponents().g,
+                self.toRGBAComponents().b,
+                self.toRGBAComponents().a,
+                self.toHSBComponents().hue,
+                self.toHSBComponents().saturation,
+                self.toHSBComponents().brightness)
     }
 }
