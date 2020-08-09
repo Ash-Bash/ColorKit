@@ -501,5 +501,34 @@ public extension NSColor {
             Int(b * 0xff)
         )
     }
+    
+    public func toHSBComponents() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
+        var h: CGFloat = 0.0
+        var s: CGFloat = 0.0
+        var b: CGFloat = 0.0
+        
+        self.getHue(&h, saturation: &s, brightness: &b, alpha: nil)
+        
+        return (h,s,b)
+    }
+    
+    public func toRGBAComponents() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
+        
+        self.getRed(&r, green: &g, blue: &b, alpha: &a)
+        return (r, g, b, a)
+    }
+    
+    public func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat, hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
+
+        r = self.toRGBAComponents().r
+        g = self.toRGBAComponents().g
+        b = self.toRGBAComponents().b
+        a = self.toRGBAComponents().a
+        hue = self.toHSBComponents().hue
+        saturation = self.toHSBComponents().saturation
+        brightness = self.toHSBComponents().brightness
+        
+        return (r, g, b, a, hue, saturation, brightness)
+    }
 }
 #endif

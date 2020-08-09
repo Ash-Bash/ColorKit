@@ -8,7 +8,21 @@
 import Foundation
 import SwiftUI
 
+#if os(iOS) || os(tvOS) || os(watchOS)
+  import UIKit
+#elseif os(OSX)
+  import AppKit
+#endif
+
 public extension Color {
+    
+    public func setRGB(red: Double, green: Double, blue: Double) {
+        self = Color(red: red, green: green, blue: blue)
+    }
+    
+    public func setHSB(hue: Double, saturation: Double, brightness: Double) {
+        self = Color(hue: hue, saturation: saturation, brightness: brightness)
+    }
     
     public static func random() -> Color {
           let hue : CGFloat = CGFloat(arc4random() % 256) / 256 // use 256 to get full range from 0.0 to 1.0
@@ -440,9 +454,106 @@ public extension Color {
             Int(b * 0xff)
         )
     }
+    
+    #if os(iOS) || os(tvOS) || os(watchOS)
+    public static func systemTheme(color: Color) -> UIUserInterfaceStyle {
+        
+        let coms = color.components()
+        let r = CGFloat(coms.r)
+        let g = CGFloat(coms.g)
+        let b = CGFloat(coms.b)
+        
+        // Counting the perceptive luminance - human eye favors green color...
+        let luminance = 1 - ((0.299 * r) + (0.587 * g) + (0.114 * b))
 
-    public func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
+        if luminance < 0.5 {
+            return .light
+        } else {
+            return .dark
+        }
+    }
+    
+    public func systemTheme() -> UIUserInterfaceStyle {
+        
+        let coms = self.components()
+        let r = CGFloat(coms.r)
+        let g = CGFloat(coms.g)
+        let b = CGFloat(coms.b)
 
+        // Counting the perceptive luminance - human eye favors green color...
+        let luminance = 1 - ((0.299 * r) + (0.587 * g) + (0.114 * b))
+
+        if luminance < 0.5 {
+            return .light
+        } else {
+            return .dark
+        }
+    }
+    
+    public static func statusBarStyle(color: Color) -> UIStatusBarStyle {
+        
+        let coms = color.components()
+        let r = CGFloat(coms.r)
+        let g = CGFloat(coms.g)
+        let b = CGFloat(coms.b)
+        var a = CGFloat(1)
+
+        // Counting the perceptive luminance - human eye favors green color...
+        let luminance = 1 - ((0.299 * r) + (0.587 * g) + (0.114 * b))
+
+        if luminance < 0.5 {
+            return .darkContent
+        } else {
+            return .lightContent
+        }
+    }
+    
+    public func statusBarStyle() -> UIStatusBarStyle {
+        
+        let coms = self.components()
+        var r = CGFloat(coms.r)
+        var g = CGFloat(coms.g)
+        var b = CGFloat(coms.b)
+        var a = CGFloat(1)
+
+        // Counting the perceptive luminance - human eye favors green color...
+        let luminance = 1 - ((0.299 * r) + (0.587 * g) + (0.114 * b))
+
+        if luminance < 0.5 {
+            return .darkContent
+        } else {
+            return .lightContent
+        }
+    }
+    
+    public func toUIColor() -> UIColor {
+
+        let components = self.components()
+        return UIColor(red: components.r, green: components.g, blue: components.b, alpha: components.a)
+    }
+    #elseif os(OSX)
+    public func toNSColor() -> NSColor {
+        let components = self.components()
+        return NSColor(red: components.r, green: components.g, blue: components.b, alpha: components.a)
+    }
+    #endif
+    
+    public func toHSBComponents() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
+        var h: CGFloat = 0.0
+        var s: CGFloat = 0.0
+        var b: CGFloat = 0.0
+        
+        #if os(iOS) || os(tvOS) || os(watchOS)
+        self.toUIColor().getHue(&h, saturation: &s, brightness: &b, alpha: nil)
+        #elseif os(OSX)
+        self.toNSColor().getHue(&h, saturation: &s, brightness: &b, alpha: nil)
+        #endif
+        
+        return (h,s,b)
+    }
+    
+    public func toRGBAComponents() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
+        
         let scanner = Scanner(string: self.description.trimmingCharacters(in: CharacterSet.alphanumerics.inverted))
         var hexNumber: UInt64 = 0
         var r: CGFloat = 0.0, g: CGFloat = 0.0, b: CGFloat = 0.0, a: CGFloat = 0.0
@@ -455,5 +566,18 @@ public extension Color {
             a = CGFloat(hexNumber & 0x000000ff) / 255
         }
         return (r, g, b, a)
+    }
+    
+    public func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat, hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
+
+        r = self.toRGBAComponents().r
+        g = self.toRGBAComponents().g
+        b = self.toRGBAComponents().b
+        a = self.toRGBAComponents().a
+        hue = self.toHSBComponents().hue
+        saturation = self.toHSBComponents().saturation
+        brightness = self.toHSBComponents().brightness
+        
+        return (r, g, b, a, hue, saturation, brightness)
     }
 }
