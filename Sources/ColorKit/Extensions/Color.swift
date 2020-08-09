@@ -552,7 +552,7 @@ public extension Color {
 
         guard NativeColor(self).getHue(&h, saturation: &s, brightness: &b, alpha: nil) else {
             // You can handle the failure here as you want
-            return (0, 0, 0, 0)
+            return (0.0, 0.0, 0.0)
         }
         
         return (h,s,b)
