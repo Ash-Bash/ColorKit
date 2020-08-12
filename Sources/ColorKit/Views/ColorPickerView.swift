@@ -61,6 +61,7 @@ public struct ColorPickerListItemView: View {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(self.color)
                     .frame(width: 72)
+                    .padding(.trailing, 10)
             }
         }
     }
