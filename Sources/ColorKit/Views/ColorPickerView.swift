@@ -47,6 +47,11 @@ public struct ColorPickerListItemView: View {
     @Binding var color: Color
     @Binding var component: ColorComponent
     
+    public init(color: Binding<Color>, component: Binding<ColorComponent>) {
+        self._color = color
+        self._component = component
+    }
+    
     public var body: some View {
         NavigationLink(destination: ViewDestination { ColorPickerView(color: self.$color, component: self.$component) }) {
             HStack {
