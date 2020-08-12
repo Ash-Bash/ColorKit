@@ -8,18 +8,18 @@
 import SwiftUI
 import Sliders
 
-struct ColorPickerView: View {
+public struct ColorPickerView: View {
     
     // Variables
     @Binding var color: Color
     @Binding var component: ColorComponent
     
-    init(color: Binding<Color>, component: Binding<ColorComponent>) {
+    public init(color: Binding<Color>, component: Binding<ColorComponent>) {
         self._color = color
         self._component = component
     }
     
-    var body: some View {
+    public var body: some View {
         TabView {
             CircularHSBColorPickerView(hue: self.$component.hue, saturation: self.$component.saturation, brightness: self.$component.brightness)
             .tabItem {
