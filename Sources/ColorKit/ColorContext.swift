@@ -36,7 +36,7 @@ public class ColorContext: ObservableObject {
     private var saturationComponentSubscriber: AnyCancellable?
     private var brightnessComponentSubscriber: AnyCancellable?
     
-    private var debounceDelay: Int = 8
+    private var debounceDelay: Int = 16
     
     public init(color: Color = Color.random()) {
         self.color = color
