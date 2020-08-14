@@ -20,6 +20,8 @@ struct BrightnessSliderStyle: LSliderStyle {
                           Color(hue: hue, saturation: saturation, brightness: 1)])
     }
     
+    var trackPadding: CGFloat = 12
+    
     func makeThumb(configuration: LSliderConfiguration) -> some View {
         ZStack {
             Circle()
@@ -32,7 +34,7 @@ struct BrightnessSliderStyle: LSliderStyle {
     }
     
     func makeTrack(configuration: LSliderConfiguration) -> some View {
-        let style: StrokeStyle = .init(lineWidth: strokeWidth, lineCap: .round)
+        let style: StrokeStyle = .init(lineWidth: self.strokeWidth - self.trackPadding, lineCap: .round)
         let gradient = LinearGradient(gradient: self.gradient, startPoint: .leading, endPoint: .trailing)
         return AdaptiveLine(angle: configuration.angle)
             .stroke(gradient, style: style)
@@ -40,7 +42,7 @@ struct BrightnessSliderStyle: LSliderStyle {
                 Capsule()
                     .stroke(Color.secondary)
                     .position(x: proxy.size.width / 2, y: proxy.size.height / 2)
-                    .frame(width: proxy.size.width + self.strokeWidth)
+                    .frame(width: proxy.size.width + (self.strokeWidth - self.trackPadding), height: self.strokeWidth - self.trackPadding)
                     .rotationEffect(configuration.angle)
             })
     }

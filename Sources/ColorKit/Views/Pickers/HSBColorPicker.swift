@@ -11,6 +11,8 @@ import Shapes
 
 struct HueSliderStyle: LSliderStyle {
     var strokeWidth: CGFloat
+    var trackPadding: CGFloat = 12
+    
     private let hueColors = stride(from: 0, to: 1, by: 0.03).map {
         Color(hue: $0, saturation: 1, brightness: 1)
     }
@@ -27,7 +29,7 @@ struct HueSliderStyle: LSliderStyle {
     }
     
     func makeTrack(configuration: LSliderConfiguration) -> some View {
-        let style: StrokeStyle = .init(lineWidth: strokeWidth, lineCap: .round)
+        let style: StrokeStyle = .init(lineWidth: self.strokeWidth - self.trackPadding, lineCap: .round)
         let gradient = LinearGradient(gradient: Gradient(colors: hueColors), startPoint: .leading, endPoint: .trailing)
         return AdaptiveLine(angle: configuration.angle)
             .stroke(gradient, style: style)
@@ -35,7 +37,7 @@ struct HueSliderStyle: LSliderStyle {
                 Capsule()
                     .stroke(Color.secondary)
                     .position(x: proxy.size.width / 2, y: proxy.size.height / 2)
-                    .frame(width: proxy.size.width + self.strokeWidth)
+                    .frame(width: proxy.size.width + (self.strokeWidth - self.trackPadding), height: self.strokeWidth - self.trackPadding)
                     .rotationEffect(configuration.angle)
             })
     }
