@@ -81,6 +81,23 @@ struct HSBColorPicker: View {
     @Binding var brightness: Double
     var sliderHeight: CGFloat = 40
     
+    @ViewBuilder var sliderInput: some View {
+        let val: Binding<String> = Binding<String>(get: {
+            String(Int(self.hue * 255))
+        }, set: {
+            if let value = NumberFormatter().number(from: $0) {
+                self.hue = value.doubleValue / 255
+            }
+        })
+        
+        Spacer()
+        TextField("Hue", text: val)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .frame(width: 92, height: 48)
+            .padding(.leading, 20)
+            .padding(.trailing, -15)
+    }
+    
     var body: some View {
         let brightnessSaturation = Binding(get: {CGPoint(x: self.saturation, y: self.brightness)},
                                            set: { (new) in
@@ -93,10 +110,13 @@ struct HSBColorPicker: View {
                 .trackPadStyle(SaturationBrightnessStyle(hue: self.hue))
                 .frame(minWidth: 320, idealWidth: 380, maxWidth: 420, minHeight: 320, idealHeight: 380, maxHeight: 420)
             
-            LSlider($hue, range: 0...0.999, angle: .zero)
-                .linearSliderStyle(HueSliderStyle(strokeWidth: sliderHeight))
-                .frame(height: sliderHeight)
-                .padding(.horizontal, 25)
+            HStack {
+                LSlider($hue, range: 0...0.999, angle: .zero)
+                    .linearSliderStyle(HueSliderStyle(strokeWidth: sliderHeight))
+                    .frame(height: sliderHeight)
+                self.sliderInput
+            }
+            .padding(.horizontal, 25)
         }
     }
 }

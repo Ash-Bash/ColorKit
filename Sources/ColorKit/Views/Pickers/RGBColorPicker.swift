@@ -10,6 +10,7 @@ import Sliders
 import Shapes
 import Combine
 
+
 struct RGBSliderStyle: LSliderStyle {
     enum ColorType: String, CaseIterable {
         case red
@@ -81,9 +82,12 @@ struct RGBColorPicker: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif
     
+    var type: RGBSliderStyle.ColorType = .red
+    @Binding var value: Double
     @Binding var red: Double
     @Binding var green: Double
     @Binding var blue: Double
+    var title: String = ""
     
     @State private var isEditingHexcode: Bool = false
     @State private var hexcode: String = "" {
@@ -107,10 +111,13 @@ struct RGBColorPicker: View {
   
     var sliderHeights: CGFloat = 40
     
-    init(red: Binding<Double>, green: Binding<Double>, blue: Binding<Double>) {
+    init(_ type: RGBSliderStyle.ColorType, value: Binding<Double>, red: Binding<Double>, green: Binding<Double>, blue: Binding<Double>, title: String) {
+        self.type = type
+        self._value = value
         self._red = red
         self._green = green
         self._blue = blue
+        self.title = title
         
         self._hexcode = State(initialValue: Color(red: self.red, green: self.green, blue: self.blue).toHex())
     }
@@ -129,93 +136,94 @@ struct RGBColorPicker: View {
             .frame(height: sliderHeights)
     }
     
-    @ViewBuilder var slidersWithTextFields: some View {
-        let redValue: Binding<String> = Binding<String>(get: {
-            String(Int(self.red * 255))
+    @ViewBuilder var sliderInput: some View {
+        let val: Binding<String> = Binding<String>(get: {
+            String(Int(self.value * 255))
         }, set: {
             if let value = NumberFormatter().number(from: $0) {
-                self.red = value.doubleValue / 255
+                self.value = value.doubleValue / 255
             }
         })
         
-        let greenValue: Binding<String> = Binding<String>(get: {
-            String(Int(self.green * 255))
+        Spacer()
+        TextField(self.title, text: val)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .frame(width: 92, height: 48)
+            .padding(.leading, 20)
+            .padding(.trailing, -15)
+    }
+    
+    var body: some View {
+        HStack {
+            self.makeSlider(self.type)
+            #if os(iOS)
+            if horizontalSizeClass != .compact {
+                self.sliderInput
+            }
+            #elseif os(macOS)
+            self.sliderInput
+            #endif
+        }
+    }
+}
+
+struct RGBColorPickerSliders: View {
+    
+    // Variables
+    @Binding var red: Double
+    @Binding var green: Double
+    @Binding var blue: Double
+    
+    @State private var hex: String = ""
+    @State private var isEditingHexcode: Bool = false
+    
+    init(red: Binding<Double>, green: Binding<Double>, blue: Binding<Double>) {
+        self._red = red
+        self._green = green
+        self._blue = blue
+        self._hex = State(initialValue: Color(red: self.red, green: self.green, blue: self.blue).toHex())
+    }
+    
+    var body: some View {
+        let hexVal: Binding<String> = Binding<String>(get: {
+            if !isEditingHexcode {
+                return Color(red: self.red, green: self.green, blue: self.blue).toHex()
+            } else {
+                return self.hex
+            }
         }, set: {
-            if let value = NumberFormatter().number(from: $0) {
-                self.green = value.doubleValue / 255
+            if $0.count > 5 {
+                let col : Color = Color.setHexString(hex: $0)
+                self.red = Double(col.components().r)
+                self.green = Double(col.components().g)
+                self.blue = Double(col.components().b)
+                self.hex = Color(red: self.red, green: self.green, blue: self.blue).toHex()
             }
         })
         
-        let blueValue: Binding<String> = Binding<String>(get: {
-            String(Int(self.blue * 255))
-        }, set: {
-            if let value = NumberFormatter().number(from: $0) {
-                self.blue = value.doubleValue / 255
-            }
-        })
-        
-        VStack(spacing: 20){
-            HStack {
-                makeSlider( .red)
-                Spacer()
-                TextField("Red", text: redValue)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .frame(width: 92, height: 48)
-                    .padding(.leading, 20)
-                    .padding(.trailing, -15)
-            }
-            HStack {
-                makeSlider(.green)
-                TextField("Green", text: greenValue)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .frame(width: 92, height: 48)
-                    .padding(.leading, 20)
-                    .padding(.trailing, -15)
-            }
-            HStack {
-                makeSlider(.blue)
-                TextField("Blue", text: blueValue)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .frame(width: 92, height: 48)
-                    .padding(.leading, 20)
-                    .padding(.trailing, -15)
-            }
+        VStack(spacing: 20) {
+            RGBColorPicker(.red, value: self.$red, red: self.$red, green: self.$green, blue: self.$blue, title: "Red")
+            RGBColorPicker(.green, value: self.$green, red: self.$red, green: self.$green, blue: self.$blue, title: "Red")
+            RGBColorPicker(.blue, value: self.$blue, red: self.$red, green: self.$green, blue: self.$blue, title: "Red")
             HStack {
                 Spacer()
                 Text("Hexcode:")
                     .font(.headline)
-                TextField("Hexcode", text: isEditingHexcode ? self.$hexcode : hexValue, onEditingChanged: { v in
+                TextField("Hexcode", text: isEditingHexcode ? self.$hex : hexVal, onEditingChanged: { v in
                     self.isEditingHexcode = v
-                }, onCommit: {
-                    self.hexValue.wrappedValue = self.hexcode
-                })
-                    
+                    }, onCommit: {
+                        var col = Color.setHexString(hex: self.hex)
+                        self.red = Double(col.components().r)
+                        self.green = Double(col.components().g)
+                        self.blue = Double(col.components().b)
+                        self.hex = Color(red: self.red, green: self.green, blue: self.blue).toHex()
+                    })
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .frame(width: 128, height: 48)
                     .padding(.leading, 10)
                     .padding(.trailing, -15)
             }
         }
-    }
-    
-    @ViewBuilder var sliders: some View {
-        #if os(iOS)
-        if horizontalSizeClass != .compact {
-            self.slidersWithTextFields
-        } else {
-            VStack(spacing: 20){
-                makeSlider( .red)
-                makeSlider(.green)
-                makeSlider(.blue)
-            }
-        }
-        #elseif os(macOS)
-        self.slidersWithTextFields
-        #endif
-    }
-    
-    var body: some View {
-        self.sliders
     }
 }
 
@@ -242,7 +250,8 @@ struct RGBColorPickerExample: View {
                     .shadow(radius: 3)
                     .overlay(self.overlay)
                 
-                RGBColorPicker(red: $red, green: $green, blue: $blue)
+                RGBColorPickerSliders(red: $red, green: $green, blue: $blue)
+                
                 
             }.padding(.horizontal, 40)
         }.navigationBarTitle("RGB Color Picker")

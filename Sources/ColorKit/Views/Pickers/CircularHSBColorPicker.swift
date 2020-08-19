@@ -85,6 +85,23 @@ struct CircularHSBColorPicker: View {
     @Binding var brightness: Double
     var sliderHeight: CGFloat = 40
     
+    @ViewBuilder var sliderInput: some View {
+        let val: Binding<String> = Binding<String>(get: {
+            String(Int(self.brightness * 255))
+        }, set: {
+            if let value = NumberFormatter().number(from: $0) {
+                self.brightness = value.doubleValue / 255
+            }
+        })
+        
+        Spacer()
+        TextField("Brightness", text: val)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .frame(width: 92, height: 48)
+            .padding(.leading, 20)
+            .padding(.trailing, -15)
+    }
+    
     var body: some View {
         VStack(spacing: 20) {
             RadialPad(offset: $saturation,
@@ -92,10 +109,14 @@ struct CircularHSBColorPicker: View {
                                      set: { self.hue = $0.degrees/360 }))
                 .radialPadStyle(SaturationHueRadialPad(brightness: brightness))
                 .scaledToFit()
-            LSlider($brightness, range: 0...1, angle: .zero)
-                .linearSliderStyle(BrightnessSliderStyle(hue: hue, saturation: saturation, brightness: brightness, strokeWidth: sliderHeight))
-                .frame(height: sliderHeight)
-                .padding(.horizontal, 25)
+            
+            HStack {
+                LSlider($brightness, range: 0...1, angle: .zero)
+                    .linearSliderStyle(BrightnessSliderStyle(hue: hue, saturation: saturation, brightness: brightness, strokeWidth: sliderHeight))
+                    .frame(height: sliderHeight)
+                self.sliderInput
+            }
+            .padding(.horizontal, 25)
         }
     }
 }
