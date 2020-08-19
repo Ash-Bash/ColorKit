@@ -115,7 +115,7 @@ struct RGBColorPickerView: View {
         VStack {
             ColorPreviewer(color: Color(red: self.red, green: self.green, blue: self.blue, opacity: 1.0))
             
-            RGBColorPicker(red: self.$red, green: self.$green, blue: self.$blue)
+            RGBColorPickerSliders(red: $red, green: $green, blue: $blue)
                 .padding(.horizontal, 35)
             
             ColorViewer(color: Color(.sRGB, red: self.red, green: self.green, blue: self.blue, opacity: 1))
