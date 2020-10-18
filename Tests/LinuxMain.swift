@@ -1,7 +1,8 @@
 import XCTest
 
-import ColorKitTests
+/*import ColorKitTests
 
 var tests = [XCTestCaseEntry]()
 tests += ColorKitTests.allTests()
 XCTMain(tests)
+*/

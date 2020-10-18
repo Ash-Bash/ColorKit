@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "ColorKit",
     platforms: [
-        SupportedPlatform.macOS(SupportedPlatform.MacOSVersion.v10_16),
+        SupportedPlatform.macOS(SupportedPlatform.MacOSVersion.v11),
         SupportedPlatform.iOS(SupportedPlatform.IOSVersion.v14),
         SupportedPlatform.watchOS(SupportedPlatform.WatchOSVersion.v7),
         SupportedPlatform.tvOS(SupportedPlatform.TVOSVersion.v14)
