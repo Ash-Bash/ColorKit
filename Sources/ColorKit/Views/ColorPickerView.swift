@@ -5,6 +5,7 @@
 //  Created by Ashley Chapman on 09/08/2020.
 //
 
+#if canImport(UIKit)
 import SwiftUI
 import Sliders
 
@@ -189,3 +190,4 @@ struct ColorPickerView_Previews: PreviewProvider {
         ColorPickerView(color: .constant(Color.blue), component: .constant(ColorComponent()))
     }
 }
+#endif

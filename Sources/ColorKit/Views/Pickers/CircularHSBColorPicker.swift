@@ -4,7 +4,7 @@
 //
 //  Created by Ashley Chapman on 07/08/2020.
 //
-
+#if canImport(UIKit)
 import SwiftUI
 import Sliders
 import Shapes
@@ -126,3 +126,4 @@ struct CircularHSBColorPicker_Previews: PreviewProvider {
         CircularHSBColorPicker(hue: .constant(0.4), saturation: .constant(0.5), brightness: .constant(0.8))
     }
 }
+#endifß

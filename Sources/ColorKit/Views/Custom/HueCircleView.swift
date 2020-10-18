@@ -4,6 +4,8 @@
 //
 //  Created by Ashley Chapman on 07/08/2020.
 //
+
+#if canImport(UIKit)
 import SwiftUI
 import UIKit
 import simd
@@ -258,3 +260,5 @@ struct HueCircleView_Previews: PreviewProvider {
         HueCircleView()
     }
 }
+
+#endif

@@ -5,6 +5,7 @@
 //  Created by Ashley Chapman on 08/08/2020.
 //
 
+#if canImport(UIKit)
 import SwiftUI
 import Sliders
 import Shapes
@@ -77,3 +78,4 @@ struct SwiftUIView_Previews: PreviewProvider {
         GraphStyleExample()
     }
 }
+#endif
