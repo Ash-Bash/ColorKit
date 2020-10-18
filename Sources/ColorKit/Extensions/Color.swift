@@ -531,21 +531,18 @@ public extension Color {
     #endif
     
     public func toHSBComponents() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
-        
-        var h: CGFloat = 0.0
-        var s: CGFloat = 0.0
-        var b: CGFloat = 0.0
-        
+
         #if canImport(UIKit)
         typealias NativeColor = UIColor
         #elseif canImport(AppKit) && os(macOS)
         typealias NativeColor = NSColor
         #endif
+        
+        var h: CGFloat = 0.0
+        var s: CGFloat = 0.0
+        var b: CGFloat = 0.0
 
-        guard NativeColor(self).getHue(&h, saturation: &s, brightness: &b, alpha: nil) else {
-            // You can handle the failure here as you want
-            return (0.0, 0.0, 0.0)
-        }
+        NativeColor(self).getHue(&h, saturation: &s, brightness: &b, alpha: nil)
         
         return (h,s,b)
     }
@@ -563,10 +560,7 @@ public extension Color {
         var blue: CGFloat = 0
         var alpha: CGFloat = 0
 
-        guard NativeColor(self).getRed(&red, green: &green, blue: &blue, alpha: &alpha) else {
-            // You can handle the failure here as you want
-            return (0, 0, 0, 0)
-        }
+        NativeColor(self).getRed(&red, green: &green, blue: &blue, alpha: &alpha)
 
         return (red, green, blue, alpha)
     }
