@@ -374,8 +374,8 @@ public extension Color {
     }
     
     public func isLight(threshold: Double = 0.5) -> Bool {
-        guard let components = self.components(), components.count > 2 else {return false}
-        let brightness = ((components[0] * 299) + (components[1] * 587) + (components[2] * 114)) / 1000
+        let components = self.components()
+        let brightness = ((components.r * 299) + (components.g * 587) + (components.b * 114)) / 1000
         return (brightness > 0.5)
     }
     
