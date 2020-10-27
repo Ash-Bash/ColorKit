@@ -374,7 +374,7 @@ public extension Color {
     }
     
     public func isLight(threshold: Double = 0.5) -> Bool {
-        guard let components = cgColor.components, components.count > 2 else {return false}
+        guard let components = self.components(), components.count > 2 else {return false}
         let brightness = ((components[0] * 299) + (components[1] * 587) + (components[2] * 114)) / 1000
         return (brightness > 0.5)
     }
@@ -405,7 +405,7 @@ public extension Color {
     }
     
     public func clashed(with color: Color) -> Bool {
-        if self.isEqualTo(color) {
+        if self.isEqualTo(color: color) {
             return true
         } else {
             return false
