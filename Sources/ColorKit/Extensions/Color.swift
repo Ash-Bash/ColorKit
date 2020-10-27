@@ -373,7 +373,17 @@ public extension Color {
         }
     }
     
-    public func isEqualTo(color: Color, withTolerance tolerance: CGFloat = 0.0) -> Bool{
+    public func isLight(threshold: Double = 0.5) -> Bool {
+        guard let components = cgColor.components, components.count > 2 else {return false}
+        let brightness = ((components[0] * 299) + (components[1] * 587) + (components[2] * 114)) / 1000
+        return (brightness > 0.5)
+    }
+    
+    public func isDark(threshold: Double = 0.5) -> Bool {
+        return !self.isLight(threshold: threshold)
+    }
+    
+    public func isEqualTo(color: Color, withTolerance tolerance: CGFloat = 0.0) -> Bool {
 
         let coms1 = self.components()
         let coms2 = color.components()
@@ -392,6 +402,30 @@ public extension Color {
             abs(g1 - g2) <= tolerance &&
             abs(b1 - b2) <= tolerance &&
             abs(a1 - a2) <= tolerance
+    }
+    
+    public func clashed(with color: Color) -> Bool {
+        if self.isEqualTo(color) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    public func declash(with color: Color, factor: Double) -> Color {
+        
+        var isClashing = self.clashed(with: color)
+        
+        if isClashing {
+            
+            if self.isLight() {
+                return self.darkness(factor: factor)
+            } else {
+                return self.lightness(factor: factor)
+            }
+        } else {
+            return self
+        }
     }
     
     public func inverse() -> Color {
