@@ -412,12 +412,11 @@ public extension Color {
         }
     }
     
-    public func declash(with color: Color, factor: Double) -> Color {
+    public func declash(with color: Color, factor: Double = 0.5) -> Color {
         
         var isClashing = self.clashed(with: color)
         
         if isClashing {
-            
             if self.isLight() {
                 return self.darkness(factor: factor)
             } else {

@@ -3,6 +3,7 @@
 
 import PackageDescription
 
+// Swift Package
 let package = Package(
     name: "ColorKit",
     platforms: [
