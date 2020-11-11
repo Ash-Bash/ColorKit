@@ -503,28 +503,32 @@ public extension NSColor {
     }
     
     public func toHSBComponents() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
-        
-        let color = self.usingColorSpace(NSColorSpace.deviceRGB)
+
+        guard let color = self.usingColorSpace(NSColorSpace.deviceRGB) else {
+            return (0, 0, 0, 0)
+        }
         
         var h: CGFloat = 0.0
         var s: CGFloat = 0.0
         var b: CGFloat = 0.0
         
-        color!.getHue(&h, saturation: &s, brightness: &b, alpha: nil)
+        color.getHue(&h, saturation: &s, brightness: &b, alpha: nil)
         
         return (h,s,b)
     }
     
     public func toRGBAComponents() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
         
-        let color = self.usingColorSpace(NSColorSpace.deviceRGB)
+        guard let color = self.usingColorSpace(NSColorSpace.deviceRGB) else {
+            return (0, 0, 0, 0)
+        }
         
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
         var a: CGFloat = 0
         
-        color!.getRed(&r, green: &g, blue: &b, alpha: &a)
+        color.getRed(&r, green: &g, blue: &b, alpha: &a)
         return (r, g, b, a)
     }
     
