@@ -510,7 +510,7 @@ public extension NSColor {
         var s: CGFloat = 0.0
         var b: CGFloat = 0.0
         
-        color.getHue(&h, saturation: &s, brightness: &b, alpha: nil)
+        color!.getHue(&h, saturation: &s, brightness: &b, alpha: nil)
         
         return (h,s,b)
     }
@@ -524,7 +524,7 @@ public extension NSColor {
         var b: CGFloat = 0
         var a: CGFloat = 0
         
-        color.getRed(&r, green: &g, blue: &b, alpha: &a)
+        color!.getRed(&r, green: &g, blue: &b, alpha: &a)
         return (r, g, b, a)
     }
     
