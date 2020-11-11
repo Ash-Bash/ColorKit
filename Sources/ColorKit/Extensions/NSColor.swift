@@ -508,8 +508,7 @@ public extension NSColor {
     }
     
     public func toRGBAComponents() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
-        let color = self.usingColorSpace(NSColorSpace.deviceRGB) ?? self
-        return (color.redComponent, color.greenComponent, color.blueComponent, color.alphaComponent)
+        return (self.redValue!, self.greenValue!, self.blueValue!, self.alphaValue!)
     }
     
     public func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat, hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
