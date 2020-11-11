@@ -18,7 +18,7 @@ public extension Color {
  
     // Variables
     // Label Colors
-    public static var label: Color {
+    static var label: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.label.toColor()
         #elseif os(OSX) || os(macOS)
@@ -26,7 +26,7 @@ public extension Color {
         #endif
     }
     
-    public static var secondaryLabel: Color {
+    static var secondaryLabel: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.secondaryLabel.toColor()
         #elseif os(OSX) || os(macOS)
@@ -34,7 +34,7 @@ public extension Color {
         #endif
     }
     
-    public static var tertiaryLabel: Color {
+    static var tertiaryLabel: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.tertiaryLabel.toColor()
         #elseif os(OSX) || os(macOS)
@@ -42,7 +42,7 @@ public extension Color {
         #endif
     }
     
-    public static var quaternaryLabel: Color {
+    static var quaternaryLabel: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.quaternaryLabel.toColor()
         #elseif os(OSX) || os(macOS)
@@ -52,7 +52,7 @@ public extension Color {
     
     
     // Fill Colors
-    public static var systemFill: Color {
+    static var systemFill: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.systemFill.toColor()
         #elseif os(OSX) || os(macOS)
@@ -60,7 +60,7 @@ public extension Color {
         #endif
     }
     
-    public static var secondarySystemFill: Color {
+    static var secondarySystemFill: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.secondarySystemFill.toColor()
         #elseif os(OSX) || os(macOS)
@@ -68,7 +68,7 @@ public extension Color {
         #endif
     }
     
-    public static var tertiarySystemFill: Color {
+    static var tertiarySystemFill: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.tertiarySystemFill.toColor()
         #elseif os(OSX) || os(macOS)
@@ -76,7 +76,7 @@ public extension Color {
         #endif
     }
     
-    public static var quaternarySystemFill: Color {
+    static var quaternarySystemFill: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.quaternarySystemFill.toColor()
         #elseif os(OSX) || os(macOS)
@@ -85,7 +85,7 @@ public extension Color {
     }
     
     // Text Colors
-    public static var placeholderText: Color {
+    static var placeholderText: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.placeholderText.toColor()
         #elseif os(OSX) || os(macOS)
@@ -94,7 +94,7 @@ public extension Color {
     }
     
     // Standard Content Background Colors
-    public static var systemBackground: Color {
+    static var systemBackground: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.systemBackground.toColor()
         #elseif os(OSX) || os(macOS)
@@ -102,7 +102,7 @@ public extension Color {
         #endif
     }
     
-    public static var secondarySystemBackground: Color {
+    static var secondarySystemBackground: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.secondarySystemBackground.toColor()
         #elseif os(OSX) || os(macOS)
@@ -110,7 +110,7 @@ public extension Color {
         #endif
     }
     
-    public static var tertiarySystemBackground: Color {
+    static var tertiarySystemBackground: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.tertiarySystemBackground.toColor()
         #elseif os(OSX) || os(macOS)
@@ -119,7 +119,7 @@ public extension Color {
     }
     
     // Grouped Content Background Colors
-    public static var systemGroupedBackground: Color {
+    static var systemGroupedBackground: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.systemGroupedBackground.toColor()
         #elseif os(OSX) || os(macOS)
@@ -127,7 +127,7 @@ public extension Color {
         #endif
     }
     
-    public static var secondaryGroupedSystemBackground: Color {
+    static var secondaryGroupedSystemBackground: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.secondarySystemGroupedBackground.toColor()
         #elseif os(OSX) || os(macOS)
@@ -135,7 +135,7 @@ public extension Color {
         #endif
     }
     
-    public static var tertiaryGroupedSystemBackground: Color {
+    static var tertiaryGroupedSystemBackground: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.tertiarySystemGroupedBackground.toColor()
         #elseif os(OSX) || os(macOS)
@@ -144,7 +144,7 @@ public extension Color {
     }
     
     // Separator Colors
-    public static var separator: Color {
+    static var separator: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.separator.toColor()
         #elseif os(OSX) || os(macOS)
@@ -152,7 +152,7 @@ public extension Color {
         #endif
     }
     
-    public static var opaqueSeparator: Color {
+    static var opaqueSeparator: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.opaqueSeparator.toColor()
         #elseif os(OSX) || os(macOS)
@@ -161,7 +161,7 @@ public extension Color {
     }
     
     // Link Colors
-    public static var link: Color {
+    static var link: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.link.toColor()
         #elseif os(OSX) || os(macOS)
@@ -170,7 +170,7 @@ public extension Color {
     }
     
     // Nonadaptable Colors
-    public static var darkText: Color {
+    static var darkText: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.darkText.toColor()
         #elseif os(OSX) || os(macOS)
@@ -178,7 +178,7 @@ public extension Color {
         #endif
     }
     
-    public static var lightText: Color {
+    static var lightText: Color {
         #if os(iOS) || os(tvOS) || os(watchOS)
         return UIColor.lightText.toColor()
         #elseif os(OSX) || os(macOS)

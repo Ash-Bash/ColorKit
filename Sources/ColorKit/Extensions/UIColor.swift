@@ -12,12 +12,12 @@ import UIKit
 
 public extension UIColor {
     
-    public var p3: UIColor {
+    var p3: UIColor {
         let col = CIColor(color: self)
         return UIColor(displayP3Red: col.red, green: col.green, blue: col.blue, alpha: col.alpha)
     }
     
-    public var alphaValue: CGFloat? {
+    var alphaValue: CGFloat? {
         get {
             var a: CGFloat = 0
             if (self.getWhite(nil, alpha: &a)) {
@@ -28,7 +28,7 @@ public extension UIColor {
         }
     }
 
-    public var whiteValue: CGFloat? {
+    var whiteValue: CGFloat? {
         get {
             var w: CGFloat = 0
             if (self.getWhite(&w, alpha: nil)) {
@@ -39,7 +39,7 @@ public extension UIColor {
         }
     }
 
-    public var redValue: CGFloat? {
+    var redValue: CGFloat? {
         get {
             var r: CGFloat = 0
             if (self.getRed(&r, green: nil, blue: nil, alpha: nil)) {
@@ -49,7 +49,7 @@ public extension UIColor {
             }
         }
     }
-    public var greenValue: CGFloat? {
+    var greenValue: CGFloat? {
         get {
             var g: CGFloat = 0
             if (self.getRed(nil, green: &g, blue: nil, alpha: nil)) {
@@ -59,7 +59,7 @@ public extension UIColor {
             }
         }
     }
-    public var blueValue: CGFloat? {
+    var blueValue: CGFloat? {
         get {
             var b: CGFloat = 0
             if (self.getRed(nil, green: nil, blue: &b, alpha: nil)) {
@@ -70,7 +70,7 @@ public extension UIColor {
         }
     }
 
-    public var hue: CGFloat? {
+    var hue: CGFloat? {
         get {
             var h: CGFloat = 0
             if (self.getHue(&h, saturation: nil, brightness: nil, alpha: nil)) {
@@ -80,7 +80,7 @@ public extension UIColor {
             }
         }
     }
-    public var saturation: CGFloat? {
+    var saturation: CGFloat? {
         get {
             var s: CGFloat = 0
             if (self.getHue(nil, saturation: &s, brightness: nil, alpha: nil)) {
@@ -90,7 +90,7 @@ public extension UIColor {
             }
         }
     }
-    public var brightness: CGFloat? {
+    var brightness: CGFloat? {
         get {
             var b: CGFloat = 0
             if (self.getHue(nil, saturation: nil, brightness: &b, alpha: nil)) {
@@ -101,7 +101,7 @@ public extension UIColor {
         }
     }
     
-    public convenience init?(hex: String) {
+    convenience init?(hex: String) {
         let r, g, b, a: CGFloat
 
         if hex.hasPrefix("#") {
@@ -140,7 +140,7 @@ public extension UIColor {
         return nil
     }
     
-    public static func random() -> UIColor {
+    static func random() -> UIColor {
           let hue : CGFloat = CGFloat(arc4random() % 256) / 256 // use 256 to get full range from 0.0 to 1.0
           let saturation : CGFloat = CGFloat(arc4random() % 128) / 256 + 0.5 // from 0.5 to 1.0 to stay away from white
           let brightness : CGFloat = CGFloat(arc4random() % 128) / 256 + 0.5 // from 0.5 to 1.0 to stay away from black
@@ -148,7 +148,7 @@ public extension UIColor {
           return UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
     }
     
-    public static func darkness(color: UIColor, factor: Double) -> UIColor {
+    static func darkness(color: UIColor, factor: Double) -> UIColor {
         
         var red: Double = Double(color.redValue! * 255)
         var green: Double = Double(color.greenValue! * 255)
@@ -175,7 +175,7 @@ public extension UIColor {
         return UIColor(red: CGFloat(red / 255), green: CGFloat(green / 255), blue: CGFloat(blue / 255), alpha: 1.0)
     }
     
-    public func darkness(factor: Double) -> UIColor {
+    func darkness(factor: Double) -> UIColor {
         
         var red: Double = Double(self.redValue! * 255)
         var green: Double = Double(self.greenValue! * 255)
@@ -202,7 +202,7 @@ public extension UIColor {
         return UIColor(red: CGFloat(red / 255), green: CGFloat(green / 255), blue: CGFloat(blue / 255), alpha: 1.0)
     }
     
-    public static func lightness(color: UIColor, factor: Double) -> UIColor {
+    static func lightness(color: UIColor, factor: Double) -> UIColor {
         
         var red: Double = Double(color.redValue! * 255)
         var green: Double = Double(color.greenValue! * 255)
@@ -235,7 +235,7 @@ public extension UIColor {
         return UIColor(red: CGFloat(red / 255), green: CGFloat(green / 255), blue: CGFloat(blue / 255), alpha: 1.0)
     }
     
-    public func lightness(factor: Double) -> UIColor {
+    func lightness(factor: Double) -> UIColor {
         
         var red: Double = Double(self.redValue! * 255)
         var green: Double = Double(self.greenValue! * 255)
@@ -268,7 +268,7 @@ public extension UIColor {
         return UIColor(red: CGFloat(red / 255), green: CGFloat(green / 255), blue: CGFloat(blue / 255), alpha: 1.0)
     }
     
-    public static func averageColor(colors: [UIColor]) -> UIColor {
+    static func averageColor(colors: [UIColor]) -> UIColor {
         
         var red: CGFloat = 0
         var green: CGFloat = 0
@@ -324,7 +324,7 @@ public extension UIColor {
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    public static func getHexString(color: UIColor) -> String {
+    static func getHexString(color: UIColor) -> String {
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
@@ -339,7 +339,7 @@ public extension UIColor {
         )
     }
     
-    public static func setHexString(hex: String) -> UIColor {
+    static func setHexString(hex: String) -> UIColor {
         let r, g, b, a: CGFloat
 
         if hex.hasPrefix("#") {
@@ -376,7 +376,7 @@ public extension UIColor {
         return UIColor.clear
     }
     
-    public static func textColor(color: UIColor, correctness: Double = 1) -> UIColor {
+    static func textColor(color: UIColor, correctness: Double = 1) -> UIColor {
         var d = CGFloat(0)
 
         var r = CGFloat(0)
@@ -398,7 +398,7 @@ public extension UIColor {
         return UIColor( red: d, green: d, blue: d, alpha: a)
     }
     
-    public func textColor(correctness: Double = 1) -> UIColor {
+    func textColor(correctness: Double = 1) -> UIColor {
         var d = CGFloat(0)
 
         var r = CGFloat(0)
@@ -420,7 +420,7 @@ public extension UIColor {
         return UIColor( red: d, green: d, blue: d, alpha: a)
     }
     
-    public static func systemTheme(color: UIColor) -> UIUserInterfaceStyle {
+    static func systemTheme(color: UIColor) -> UIUserInterfaceStyle {
         var r = CGFloat(0)
         var g = CGFloat(0)
         var b = CGFloat(0)
@@ -438,7 +438,7 @@ public extension UIColor {
         }
     }
     
-    public func systemTheme() -> UIUserInterfaceStyle {
+    func systemTheme() -> UIUserInterfaceStyle {
         var r = CGFloat(0)
         var g = CGFloat(0)
         var b = CGFloat(0)
@@ -456,7 +456,7 @@ public extension UIColor {
         }
     }
     
-    public static func colorScheme(color: UIColor) -> ColorScheme {
+    static func colorScheme(color: UIColor) -> ColorScheme {
         var r = CGFloat(0)
         var g = CGFloat(0)
         var b = CGFloat(0)
@@ -474,7 +474,7 @@ public extension UIColor {
         }
     }
     
-    public func colorScheme() -> ColorScheme {
+    func colorScheme() -> ColorScheme {
         var r = CGFloat(0)
         var g = CGFloat(0)
         var b = CGFloat(0)
@@ -492,7 +492,7 @@ public extension UIColor {
         }
     }
     
-    public static func statusBarStyle(color: UIColor) -> UIStatusBarStyle {
+    static func statusBarStyle(color: UIColor) -> UIStatusBarStyle {
         var r = CGFloat(0)
         var g = CGFloat(0)
         var b = CGFloat(0)
@@ -510,7 +510,7 @@ public extension UIColor {
         }
     }
     
-    public func statusBarStyle() -> UIStatusBarStyle {
+    func statusBarStyle() -> UIStatusBarStyle {
         var r = CGFloat(0)
         var g = CGFloat(0)
         var b = CGFloat(0)
@@ -528,7 +528,7 @@ public extension UIColor {
         }
     }
     
-    public func inverse() -> UIColor {
+    func inverse() -> UIColor {
         var r:CGFloat = 0.0
         var g:CGFloat = 0.0
         var b:CGFloat = 0.0
@@ -541,7 +541,7 @@ public extension UIColor {
         return self // Return a default colour
     }
     
-    public func between(_ color: UIColor, percentage: CGFloat) -> UIColor {
+    func between(_ color: UIColor, percentage: CGFloat) -> UIColor {
         let percentage = max(min(percentage, 100), 0) / 100
         switch percentage {
         case 0: return self
@@ -559,7 +559,7 @@ public extension UIColor {
         }
     }
     
-    public func isEqualTo(color: UIColor, withTolerance tolerance: CGFloat = 0.0) -> Bool{
+    func isEqualTo(color: UIColor, withTolerance tolerance: CGFloat = 0.0) -> Bool{
 
         var r1 : CGFloat = 0
         var g1 : CGFloat = 0
@@ -580,7 +580,7 @@ public extension UIColor {
             abs(a1 - a2) <= tolerance
     }
     
-    public func distance(match: UIColor) -> Int
+    func distance(match: UIColor) -> Int
     {
         var redDifference : CGFloat = 0
         var greenDifference : CGFloat = 0
@@ -593,16 +593,16 @@ public extension UIColor {
         return Int(redDifference * redDifference + greenDifference * greenDifference + blueDifference * blueDifference)
     }
     
-    public func toColor() -> Color {
+    func toColor() -> Color {
         return Color(self)
     }
     
-    public func toName() -> String {
+    func toName() -> String {
         let colorThesaurus = ColorThesaurus.closestMatch(color: self)
         return colorThesaurus.color.name
     }
     
-    public func toHex() -> String {
+    func toHex() -> String {
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
@@ -617,7 +617,7 @@ public extension UIColor {
         )
     }
     
-    public func toHSBComponents() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
+    func toHSBComponents() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
         var h: CGFloat = 0.0
         var s: CGFloat = 0.0
         var b: CGFloat = 0.0
@@ -627,7 +627,7 @@ public extension UIColor {
         return (h,s,b)
     }
     
-    public func toRGBAComponents() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
+    func toRGBAComponents() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
         
         var r: CGFloat = 0
         var g: CGFloat = 0
@@ -638,7 +638,7 @@ public extension UIColor {
         return (r, g, b, a)
     }
     
-    public func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat, hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
+    func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat, hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
 
         var r: CGFloat = 0
         var g: CGFloat = 0

@@ -122,8 +122,8 @@ public class MetalView: NSObject, MTKViewDelegate {
     
     func registerShaders() {
         let input: String?
-        let vert_func: MTLFunction
-        let frag_func: MTLFunction
+        let _: MTLFunction
+        let _: MTLFunction
         do {
             input = shader
             let library = try device.makeLibrary(source: input!, options: nil)

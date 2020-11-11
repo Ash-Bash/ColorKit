@@ -213,7 +213,7 @@ struct RGBColorPickerSliders: View {
                 TextField("Hexcode", text: isEditingHexcode ? self.$hex : hexVal, onEditingChanged: { v in
                     self.isEditingHexcode = v
                     }, onCommit: {
-                        var col = Color.setHexString(hex: self.hex)
+                        let col = Color.setHexString(hex: self.hex)
                         self.red = Double(col.components().r)
                         self.green = Double(col.components().g)
                         self.blue = Double(col.components().b)
@@ -266,4 +266,4 @@ struct RGBColorPicker_Previews: PreviewProvider {
 }
 
 #endif
- 
+

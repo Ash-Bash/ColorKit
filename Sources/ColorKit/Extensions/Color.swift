@@ -16,7 +16,7 @@ import SwiftUI
 
 public extension Color {
     
-    public init(hex: String) {
+    init(hex: String) {
         let hexWithouthash = hex.replacingOccurrences(of: "#", with: "", options: .literal, range: nil)
         let phex = hexWithouthash.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int: UInt64 = 0
@@ -42,15 +42,15 @@ public extension Color {
         )
     }
     
-    public mutating func setRGB(red: Double, green: Double, blue: Double) {
+    mutating func setRGB(red: Double, green: Double, blue: Double) {
         self = Color(red: red, green: green, blue: blue)
     }
     
-    public mutating func setHSB(hue: Double, saturation: Double, brightness: Double) {
+    mutating func setHSB(hue: Double, saturation: Double, brightness: Double) {
         self = Color(hue: hue, saturation: saturation, brightness: brightness)
     }
     
-    public static func random() -> Color {
+    static func random() -> Color {
           let hue : CGFloat = CGFloat(arc4random() % 256) / 256 // use 256 to get full range from 0.0 to 1.0
           let saturation : CGFloat = CGFloat(arc4random() % 128) / 256 + 0.5 // from 0.5 to 1.0 to stay away from white
           let brightness : CGFloat = CGFloat(arc4random() % 128) / 256 + 0.5 // from 0.5 to 1.0 to stay away from black
@@ -58,7 +58,7 @@ public extension Color {
           return Color(hue: Double(hue), saturation: Double(saturation), brightness: Double(brightness))
     }
     
-    public static func darkness(color: Color, factor: Double) -> Color {
+    static func darkness(color: Color, factor: Double) -> Color {
         
         let coms = color.components()
         var red = CGFloat(coms.r * 255)
@@ -88,7 +88,7 @@ public extension Color {
         return Color(red: Double(red / 255), green: Double(green / 255), blue: Double(blue / 255))
     }
     
-    public func darkness(factor: Double) -> Color {
+    func darkness(factor: Double) -> Color {
         
         let coms = self.components()
         var red = CGFloat(coms.r * 255)
@@ -118,7 +118,7 @@ public extension Color {
         return Color(red: Double(red / 255), green: Double(green / 255), blue: Double(blue / 255))
     }
     
-    public static func lightness(color: Color, factor: Double) -> Color {
+    static func lightness(color: Color, factor: Double) -> Color {
         
         let coms = color.components()
         var red = CGFloat(coms.r * 255)
@@ -154,7 +154,7 @@ public extension Color {
         return Color(red: Double(red / 255), green: Double(green / 255), blue: Double(blue / 255))
     }
     
-    public func lightness(factor: Double) -> Color {
+    func lightness(factor: Double) -> Color {
         
         let coms = self.components()
         var red = CGFloat(coms.r * 255)
@@ -190,7 +190,7 @@ public extension Color {
         return Color(red: Double(red / 255), green: Double(green / 255), blue: Double(blue / 255))
     }
     
-    public static func getHexString(color: Color) -> String {
+    static func getHexString(color: Color) -> String {
         
         let coms = color.components()
         let r = CGFloat(coms.r)
@@ -206,11 +206,11 @@ public extension Color {
         )
     }
     
-    public static func setHexString(hex: String) -> Color {
+    static func setHexString(hex: String) -> Color {
         return Color(hex: hex)
     }
     
-    public static func textColor(color: Color, correctness: Double = 1) -> Color {
+    static func textColor(color: Color, correctness: Double = 1) -> Color {
         
         var d = CGFloat(0)
 
@@ -231,7 +231,7 @@ public extension Color {
         return Color(red: Double(d), green: Double(d), blue: Double(d))
     }
     
-    public func textColor(correctness: Double = 1) -> Color {
+    func textColor(correctness: Double = 1) -> Color {
         
         var d = CGFloat(0)
 
@@ -252,7 +252,7 @@ public extension Color {
         return Color(red: Double(d), green: Double(d), blue: Double(d))
     }
     
-    public static func systemColorScheme(color: Color) -> ColorScheme {
+    static func systemColorScheme(color: Color) -> ColorScheme {
         
         let coms = color.components()
         let r = CGFloat(coms.r)
@@ -269,7 +269,7 @@ public extension Color {
         }
     }
     
-    public func colorScheme() -> ColorScheme {
+    func colorScheme() -> ColorScheme {
         
         let coms = self.components()
         let r = CGFloat(coms.r)
@@ -287,7 +287,7 @@ public extension Color {
         }
     }
     
-    public static func brightness(color: Color, factor: Double) -> Color {
+    static func brightness(color: Color, factor: Double) -> Color {
         
         let coms = color.components()
         var red: Double? = Double(coms.r) * 255
@@ -309,7 +309,7 @@ public extension Color {
         return Color(red: red! / 255, green: green! / 255, blue: blue! / 255)
     }
     
-    public static func average(colors: [Color]) -> Color {
+    static func average(colors: [Color]) -> Color {
         
         var red: CGFloat = 0
         var green: CGFloat = 0
@@ -354,7 +354,7 @@ public extension Color {
         return Color(red: Double(red), green: Double(green), blue: Double(blue))
     }
     
-    public func between(_ color: Color, percentage: CGFloat) -> Color {
+    func between(_ color: Color, percentage: CGFloat) -> Color {
         
         let coms1 = self.components()
         let coms2 = color.components()
@@ -373,17 +373,17 @@ public extension Color {
         }
     }
     
-    public func isLight(threshold: Double = 0.5) -> Bool {
+    func isLight(threshold: Double = 0.5) -> Bool {
         let components = self.components()
         let brightness = ((components.r * 299) + (components.g * 587) + (components.b * 114)) / 1000
         return (brightness > 0.5)
     }
     
-    public func isDark(threshold: Double = 0.5) -> Bool {
+    func isDark(threshold: Double = 0.5) -> Bool {
         return !self.isLight(threshold: threshold)
     }
     
-    public func isEqualTo(color: Color, withTolerance tolerance: CGFloat = 0.0) -> Bool {
+    func isEqualTo(color: Color, withTolerance tolerance: CGFloat = 0.0) -> Bool {
 
         let coms1 = self.components()
         let coms2 = color.components()
@@ -404,7 +404,7 @@ public extension Color {
             abs(a1 - a2) <= tolerance
     }
     
-    public func clashed(with color: Color) -> Bool {
+    func clashed(with color: Color) -> Bool {
         if self.isEqualTo(color: color) {
             return true
         } else {
@@ -412,9 +412,9 @@ public extension Color {
         }
     }
     
-    public func declash(with color: Color, factor: Double = 0.5) -> Color {
+    func declash(with color: Color, factor: Double = 0.5) -> Color {
         
-        var isClashing = self.clashed(with: color)
+        let isClashing = self.clashed(with: color)
         
         if isClashing {
             if self.isLight() {
@@ -427,7 +427,7 @@ public extension Color {
         }
     }
     
-    public func inverse() -> Color {
+    func inverse() -> Color {
         
         let coms = self.components()
         let r: CGFloat = CGFloat(coms.r)
@@ -438,12 +438,12 @@ public extension Color {
         return Color(red: 1.0-Double(r), green: 1.0 - Double(g), blue: 1.0 - Double(b), opacity: Double(a))
     }
     
-    public func toName() -> String {
+    func toName() -> String {
         let colorThesaurus = ColorThesaurus.closestMatch(color: self)
         return colorThesaurus.color.name
     }
     
-    public func toRGBString() -> String {
+    func toRGBString() -> String {
         
         let coms = self.components()
         let r: CGFloat = CGFloat(coms.r)
@@ -453,7 +453,7 @@ public extension Color {
 
         return "(\(Int((r * 255))), \(Int((g * 255))), \(Int((b * 255))))"
     }
-    public func toFloatString() -> String {
+    func toFloatString() -> String {
         
         let coms = self.components()
         let r: CGFloat = CGFloat(coms.r)
@@ -464,7 +464,7 @@ public extension Color {
         return "(\(r), \(g), \(b))"
     }
     
-    public func toHex() -> String {
+    func toHex() -> String {
         
         let coms = self.components()
         let r: CGFloat = CGFloat(coms.r)
@@ -481,7 +481,7 @@ public extension Color {
     }
     
     #if os(iOS) || os(tvOS) || os(watchOS)
-    public static func systemTheme(color: Color) -> UIUserInterfaceStyle {
+    static func systemTheme(color: Color) -> UIUserInterfaceStyle {
         
         let coms = color.components()
         let r = CGFloat(coms.r)
@@ -498,7 +498,7 @@ public extension Color {
         }
     }
     
-    public func systemTheme() -> UIUserInterfaceStyle {
+    func systemTheme() -> UIUserInterfaceStyle {
         
         let coms = self.components()
         let r = CGFloat(coms.r)
@@ -515,13 +515,13 @@ public extension Color {
         }
     }
     
-    public static func statusBarStyle(color: Color) -> UIStatusBarStyle {
+    static func statusBarStyle(color: Color) -> UIStatusBarStyle {
         
         let coms = color.components()
         let r = CGFloat(coms.r)
         let g = CGFloat(coms.g)
         let b = CGFloat(coms.b)
-        var a = CGFloat(1)
+        _ = CGFloat(1)
 
         // Counting the perceptive luminance - human eye favors green color...
         let luminance = 1 - ((0.299 * r) + (0.587 * g) + (0.114 * b))
@@ -533,13 +533,13 @@ public extension Color {
         }
     }
     
-    public func statusBarStyle() -> UIStatusBarStyle {
+    func statusBarStyle() -> UIStatusBarStyle {
         
         let coms = self.components()
-        var r = CGFloat(coms.r)
-        var g = CGFloat(coms.g)
-        var b = CGFloat(coms.b)
-        var a = CGFloat(1)
+        let r = CGFloat(coms.r)
+        let g = CGFloat(coms.g)
+        let b = CGFloat(coms.b)
+        _ = CGFloat(1)
 
         // Counting the perceptive luminance - human eye favors green color...
         let luminance = 1 - ((0.299 * r) + (0.587 * g) + (0.114 * b))
@@ -551,19 +551,19 @@ public extension Color {
         }
     }
     
-    public func toUIColor() -> UIColor {
+    func toUIColor() -> UIColor {
 
         let components = self.components()
         return UIColor(red: components.r, green: components.g, blue: components.b, alpha: components.a)
     }
     #elseif os(macOS)
-    public func toNSColor() -> NSColor {
+    func toNSColor() -> NSColor {
         let components = self.components()
         return NSColor(red: components.r, green: components.g, blue: components.b, alpha: components.a)
     }
     #endif
     
-    public func toHSBComponents() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
+    func toHSBComponents() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
 
         #if canImport(UIKit)
         typealias NativeColor = UIColor
@@ -571,16 +571,16 @@ public extension Color {
         typealias NativeColor = NSColor
         #endif
         
-        var nativeHSB = NativeColor(self).toHSBComponents()
+        let nativeHSB = NativeColor(self).toHSBComponents()
         
-        var h: CGFloat = nativeHSB.hue
-        var s: CGFloat = nativeHSB.saturation
-        var b: CGFloat = nativeHSB.brightness
+        let h: CGFloat = nativeHSB.hue
+        let s: CGFloat = nativeHSB.saturation
+        let b: CGFloat = nativeHSB.brightness
         
         return (h,s,b)
     }
     
-    public func toRGBAComponents() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
+    func toRGBAComponents() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
         
         #if canImport(UIKit)
         typealias NativeColor = UIColor
@@ -588,17 +588,17 @@ public extension Color {
         typealias NativeColor = NSColor
         #endif
 
-        var nativeRGBA = NativeColor(self).toRGBAComponents()
+        let nativeRGBA = NativeColor(self).toRGBAComponents()
         
-        var red: CGFloat = nativeRGBA.r
-        var green: CGFloat = nativeRGBA.b
-        var blue: CGFloat = nativeRGBA.g
-        var alpha: CGFloat = nativeRGBA.a
+        let red: CGFloat = nativeRGBA.r
+        let green: CGFloat = nativeRGBA.b
+        let blue: CGFloat = nativeRGBA.g
+        let alpha: CGFloat = nativeRGBA.a
 
         return (red, green, blue, alpha)
     }
     
-    public func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat, hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
+    func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat, hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
         
         return (self.toRGBAComponents().r,
                 self.toRGBAComponents().g,
