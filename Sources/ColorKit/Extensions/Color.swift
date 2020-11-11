@@ -571,11 +571,11 @@ public extension Color {
         typealias NativeColor = NSColor
         #endif
         
-        var h: CGFloat = 0.0
-        var s: CGFloat = 0.0
-        var b: CGFloat = 0.0
-
-        NativeColor(self).getHue(&h, saturation: &s, brightness: &b, alpha: nil)
+        var nativeHSB = NativeColor(self).toHSBComponents()
+        
+        var h: CGFloat = nativeHSB.hue
+        var s: CGFloat = nativeHSB.saturation
+        var b: CGFloat = nativeHSB.brightness
         
         return (h,s,b)
     }
@@ -588,12 +588,12 @@ public extension Color {
         typealias NativeColor = NSColor
         #endif
 
-        var red: CGFloat = 0
-        var green: CGFloat = 0
-        var blue: CGFloat = 0
-        var alpha: CGFloat = 0
-
-        NativeColor(self).getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        var nativeRGBA = NativeColor(self).toRGBAComponents()
+        
+        var red: CGFloat = nativeRGBA.r
+        var green: CGFloat = nativeRGBA.b
+        var blue: CGFloat = nativeRGBA.g
+        var alpha: CGFloat = nativeRGBA.a
 
         return (red, green, blue, alpha)
     }
