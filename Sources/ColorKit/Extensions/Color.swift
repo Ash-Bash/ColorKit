@@ -571,7 +571,9 @@ public extension Color {
         typealias NativeColor = NSColor
         #endif
         
-        let nativeHSB = NativeColor(self).toHSBComponents()
+        guard let nativeHSB = NativeColor(self).toHSBComponents() else {
+            return (0.0, 0.0, 0.0)
+        }
         
         let h: CGFloat = nativeHSB.hue
         let s: CGFloat = nativeHSB.saturation
@@ -588,7 +590,9 @@ public extension Color {
         typealias NativeColor = NSColor
         #endif
 
-        let nativeRGBA = NativeColor(self).toRGBAComponents()
+        guard let nativeRGBA = NativeColor(self).toRGBAComponents() else {
+            return (0.0, 0.0, 0.0, 0.0)
+        }
         
         let red: CGFloat = nativeRGBA.r
         let green: CGFloat = nativeRGBA.b

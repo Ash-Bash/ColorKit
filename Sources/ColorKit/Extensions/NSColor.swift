@@ -504,13 +504,13 @@ public extension NSColor {
     
     func toHSBComponents() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat) {
 
-        var color = Color(self)
+        let color = Color(self)
         return (color.components().hue, color.components().saturation, color.components().brightness, color.components().a)
     }
     
     func toRGBAComponents() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
         
-        var color = Color(self)
+        let color = Color(self)
         return (color.components().r, color.components().g, color.components().b, color.components().a)
     }
     
