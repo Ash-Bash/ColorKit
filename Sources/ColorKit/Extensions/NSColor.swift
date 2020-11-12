@@ -504,35 +504,14 @@ public extension NSColor {
     
     func toHSBComponents() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat) {
 
-        var h: CGFloat = 0.0
-        var s: CGFloat = 0.0
-        var b: CGFloat = 0.0
-        var a: CGFloat = 0.0
-        
-        guard let color = self.usingColorSpace(NSColorSpace.deviceRGB) else {
-            self.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-            return (h,s,b,a)
-        }
-        
-        color.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-        
-        return (h,s,b,a)
+        var color = Color(self)
+        return (color.components().hue, color.components().saturation, color.components().brightness, color.components().a)
     }
     
     func toRGBAComponents() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
         
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
-        
-        guard let color = self.usingColorSpace(NSColorSpace.deviceRGB) else {
-            self.getRed(&r, green: &g, blue: &b, alpha: &a)
-            return (r, g, b, a)
-        }
-        
-        color.getRed(&r, green: &g, blue: &b, alpha: &a)
-        return (r, g, b, a)
+        var color = Color(self)
+        return (color.components().r, color.components().g, color.components().b, color.components().a)
     }
     
     /*public func toHSBComponents() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
