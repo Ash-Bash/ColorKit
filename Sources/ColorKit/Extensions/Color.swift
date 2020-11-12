@@ -18,23 +18,32 @@ public extension Color {
     
     var coms: (red: CGFloat, green: CGFloat, blue: CGFloat, opacity: CGFloat) {
 
-            #if canImport(UIKit)
-            typealias NativeColor = UIColor
-            #elseif canImport(AppKit)
-            typealias NativeColor = NSColor
-            #endif
-
-            var r: CGFloat = 0
-            var g: CGFloat = 0
-            var b: CGFloat = 0
-            var o: CGFloat = 0
-
-            guard NativeColor(self).getRed(&r, green: &g, blue: &b, alpha: &o) else {
-                // You can handle the failure here as you want
-                return (0, 0, 0, 0)
+        let hex = self.description
+        let space = CharacterSet(charactersIn: " ")
+        let trim = hex.trimmingCharacters(in: space)
+        let value = hex.first != "#" ? "#\(trim)" : trim
+        let values = Array(value)
+        func radixValue(_ index: Int) -> CGFloat? {
+            var result: CGFloat?
+            if values.count > index + 1 {
+                var input = "\(values[index])\(values[index + 1])"
+                if values[index] == "0" {
+                    input = "\(values[index + 1])"
+                }
+                if let val = Int(input, radix: 16) {
+                    result = CGFloat(val)
+                }
             }
+            return result
+        }
+            
+        var rgb = (red: CGFloat(0), green: CGFloat(0), blue: CGFloat(0), alpha: CGFloat(0))
+        if let outputR = radixValue(1) { rgb.red = outputR / 255 }
+        if let outputG = radixValue(3) { rgb.green = outputG / 255 }
+        if let outputB = radixValue(5) { rgb.blue = outputB / 255 }
+        if let outputA = radixValue(7) { rgb.alpha = outputA / 255 }
 
-            return (r, g, b, o)
+        return (rgb.red, rgb.green, rgb.blue, rgb.alpha)
     }
     
     init(hex: String) {
