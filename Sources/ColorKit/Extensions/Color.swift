@@ -16,34 +16,41 @@ import SwiftUI
 
 public extension Color {
     
-    var coms: (red: CGFloat, green: CGFloat, blue: CGFloat, opacity: CGFloat) {
+    private var redComponent: Double? {
+        let val = description
+        guard val.hasPrefix("#") else { return nil }
+        let r1 = val.index(val.startIndex, offsetBy: 1)
+        let r2 = val.index(val.startIndex, offsetBy: 2)
+        return Double(Int(val[r1...r2], radix: 16)!) / 255.0
+    }
 
-        let hex = self.description
-        let space = CharacterSet(charactersIn: " ")
-        let trim = hex.trimmingCharacters(in: space)
-        let value = hex.first != "#" ? "#\(trim)" : trim
-        let values = Array(value)
-        func radixValue(_ index: Int) -> CGFloat? {
-            var result: CGFloat?
-            if values.count > index + 1 {
-                var input = "\(values[index])\(values[index + 1])"
-                if values[index] == "0" {
-                    input = "\(values[index + 1])"
-                }
-                if let val = Int(input, radix: 16) {
-                    result = CGFloat(val)
-                }
-            }
-            return result
-        }
-            
-        var rgb = (red: CGFloat(0), green: CGFloat(0), blue: CGFloat(0), alpha: CGFloat(0))
-        if let outputR = radixValue(1) { rgb.red = outputR / 255 }
-        if let outputG = radixValue(3) { rgb.green = outputG / 255 }
-        if let outputB = radixValue(5) { rgb.blue = outputB / 255 }
-        if let outputA = radixValue(7) { rgb.alpha = outputA / 255 }
+    private var greenComponent: Double? {
+        let val = description
+        guard val.hasPrefix("#") else { return nil }
+        let g1 = val.index(val.startIndex, offsetBy: 3)
+        let g2 = val.index(val.startIndex, offsetBy: 4)
+        return Double(Int(val[g1...g2], radix: 16)!) / 255.0
+    }
 
-        return (rgb.red, rgb.green, rgb.blue, rgb.alpha)
+    private var blueComponent: Double? {
+        let val = description
+        guard val.hasPrefix("#") else { return nil }
+        let b1 = val.index(val.startIndex, offsetBy: 5)
+        let b2 = val.index(val.startIndex, offsetBy: 6)
+        return Double(Int(val[b1...b2], radix: 16)!) / 255.0
+    }
+
+    private var opacityComponent: Double? {
+        let val = description
+        guard val.hasPrefix("#") else { return nil }
+        let b1 = val.index(val.startIndex, offsetBy: 7)
+        let b2 = val.index(val.startIndex, offsetBy: 8)
+        return Double(Int(val[b1...b2], radix: 16)!) / 255.0
+    }
+    
+    private var coms: (red: CGFloat, green: CGFloat, blue: CGFloat, opacity: CGFloat) {
+
+        return (CGFloat(self.redComponent ?? 0.0), CGFloat(self.greenComponent ?? 0.0), CGFloat(self.blueComponent ?? 0.0), CGFloat(self.opacityComponent ?? 0.0))
     }
     
     init(hex: String) {
