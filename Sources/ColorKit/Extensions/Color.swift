@@ -16,6 +16,27 @@ import SwiftUI
 
 public extension Color {
     
+    var coms: (red: CGFloat, green: CGFloat, blue: CGFloat, opacity: CGFloat) {
+
+            #if canImport(UIKit)
+            typealias NativeColor = UIColor
+            #elseif canImport(AppKit)
+            typealias NativeColor = NSColor
+            #endif
+
+            var r: CGFloat = 0
+            var g: CGFloat = 0
+            var b: CGFloat = 0
+            var o: CGFloat = 0
+
+            guard NativeColor(self).getRed(&r, green: &g, blue: &b, alpha: &o) else {
+                // You can handle the failure here as you want
+                return (0, 0, 0, 0)
+            }
+
+            return (r, g, b, o)
+    }
+    
     init(hex: String) {
         let hexWithouthash = hex.replacingOccurrences(of: "#", with: "", options: .literal, range: nil)
         let phex = hexWithouthash.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
@@ -583,23 +604,7 @@ public extension Color {
     }
     
     func toRGBAComponents() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
-        
-        #if canImport(UIKit)
-        typealias NativeColor = UIColor
-        #elseif canImport(AppKit) && os(macOS)
-        typealias NativeColor = NSColor
-        #endif
-
-        guard let nativeRGBA = NativeColor(self).toRGBAComponents() else {
-            return (0.0, 0.0, 0.0, 0.0)
-        }
-        
-        let red: CGFloat = nativeRGBA.r
-        let green: CGFloat = nativeRGBA.b
-        let blue: CGFloat = nativeRGBA.g
-        let alpha: CGFloat = nativeRGBA.a
-
-        return (red, green, blue, alpha)
+        return (self.coms.red, self.coms.green, self.coms.blue, self.coms.opacity)
     }
     
     func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat, hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
