@@ -48,7 +48,20 @@ public extension Color {
         return Double(Int(val[b1...b2], radix: 16)!) / 255.0
     }
     
-    private var coms: (red: CGFloat, green: CGFloat, blue: CGFloat, opacity: CGFloat) {
+    private var coms: (red: CGFloat, green: CGFloat, blue: CGFloat, opacity: CGFloat)? {
+        
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var o: CGFloat = 0
+        
+        #if canImport(UIKit)
+        self.toUIColor().getRed(&r, green: &g, blue: &b, alpha: &o)
+        //guard self.toUIColor().getRed(&r, green: &g, blue: &b, alpha: &o) else { return nil }
+        #elseif canImport(AppKit)
+        self.toNSColor().getRed(&r, green: &g, blue: &b, alpha: &o)
+        //guard self.toNSColor().getRed(&r, green: &g, blue: &b, alpha: &o) else { return nil }
+        #endif
 
         return (CGFloat(self.redComponent ?? 0.0), CGFloat(self.greenComponent ?? 0.0), CGFloat(self.blueComponent ?? 0.0), CGFloat(self.opacityComponent ?? 0.0))
     }
@@ -618,7 +631,7 @@ public extension Color {
     }
     
     func toRGBAComponents() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
-        return (self.coms.red, self.coms.green, self.coms.blue, self.coms.opacity)
+        return (self.coms!.red, self.coms!.green, self.coms!.blue, self.coms!.opacity)
     }
     
     func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat, hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
