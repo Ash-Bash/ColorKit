@@ -16,38 +16,6 @@ import SwiftUI
 
 public extension Color {
     
-    private var redComponent: Double? {
-        let val = description
-        guard val.hasPrefix("#") else { return nil }
-        let r1 = val.index(val.startIndex, offsetBy: 1)
-        let r2 = val.index(val.startIndex, offsetBy: 2)
-        return Double(Int(val[r1...r2], radix: 16)!) / 255.0
-    }
-
-    private var greenComponent: Double? {
-        let val = description
-        guard val.hasPrefix("#") else { return nil }
-        let g1 = val.index(val.startIndex, offsetBy: 3)
-        let g2 = val.index(val.startIndex, offsetBy: 4)
-        return Double(Int(val[g1...g2], radix: 16)!) / 255.0
-    }
-
-    private var blueComponent: Double? {
-        let val = description
-        guard val.hasPrefix("#") else { return nil }
-        let b1 = val.index(val.startIndex, offsetBy: 5)
-        let b2 = val.index(val.startIndex, offsetBy: 6)
-        return Double(Int(val[b1...b2], radix: 16)!) / 255.0
-    }
-
-    private var opacityComponent: Double? {
-        let val = description
-        guard val.hasPrefix("#") else { return nil }
-        let b1 = val.index(val.startIndex, offsetBy: 7)
-        let b2 = val.index(val.startIndex, offsetBy: 8)
-        return Double(Int(val[b1...b2], radix: 16)!) / 255.0
-    }
-    
     private var coms: (red: CGFloat, green: CGFloat, blue: CGFloat, opacity: CGFloat)? {
         
         var r: CGFloat = 0
@@ -63,7 +31,7 @@ public extension Color {
         //guard self.toNSColor().getRed(&r, green: &g, blue: &b, alpha: &o) else { return nil }
         #endif
 
-        return (CGFloat(self.redComponent ?? 0.0), CGFloat(self.greenComponent ?? 0.0), CGFloat(self.blueComponent ?? 0.0), CGFloat(self.opacityComponent ?? 0.0))
+        return (r, g, b, o)
     }
     
     init(hex: String) {
