@@ -16,24 +16,6 @@ import SwiftUI
 
 public extension Color {
     
-    private var coms: (red: CGFloat, green: CGFloat, blue: CGFloat, opacity: CGFloat)? {
-        
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var o: CGFloat = 0
-        
-        #if canImport(UIKit)
-        self.toUIColor().getRed(&r, green: &g, blue: &b, alpha: &o)
-        //guard self.toUIColor().getRed(&r, green: &g, blue: &b, alpha: &o) else { return nil }
-        #elseif canImport(AppKit)
-        self.toNSColor().getRed(&r, green: &g, blue: &b, alpha: &o)
-        //guard self.toNSColor().getRed(&r, green: &g, blue: &b, alpha: &o) else { return nil }
-        #endif
-
-        return (r, g, b, o)
-    }
-    
     init(hex: String) {
         let hexWithouthash = hex.replacingOccurrences(of: "#", with: "", options: .literal, range: nil)
         let phex = hexWithouthash.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
@@ -583,23 +565,42 @@ public extension Color {
     
     func toHSBComponents() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
 
+        var h: CGFloat = 0.0
+        var s: CGFloat = 0.0
+        var b: CGFloat = 0.0
+        
         #if canImport(UIKit)
-        typealias NativeColor = UIColor
+        UIColor(self).getHue(&h, saturation: &s, brightness: &b, alpha: nil)
         #elseif canImport(AppKit) && os(macOS)
-        typealias NativeColor = NSColor
+        let color = NSColor(self).usingColorSpace(NSColorSpace.genericRGB)
+        color?.getHue(&h, saturation: &s, brightness: &b, alpha: nil)
         #endif
-        
-        let nativeHSB = NativeColor(self).toHSBComponents()
-        
-        let h: CGFloat = nativeHSB.hue
-        let s: CGFloat = nativeHSB.saturation
-        let b: CGFloat = nativeHSB.brightness
-        
+                
         return (h,s,b)
     }
     
     func toRGBAComponents() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
-        return (self.coms!.red, self.coms!.green, self.coms!.blue, self.coms!.opacity)
+        
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        
+        #if canImport(UIKit)
+        UIColor(self).getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        #elseif canImport(AppKit) && os(macOS)
+        let color = NSColor(self).usingColorSpace(NSColorSpace.genericRGB)
+        
+        guard let r = color?.components().r, let g = color?.components().g, let b = color?.components().b, let a = color?.components().a else {
+            return (0.0, 0.0, 0.0, 0.0)
+        }
+        red = r
+        green = g
+        blue = b
+        alpha = a
+        #endif
+
+        return (red, green, blue, alpha)
     }
     
     func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat, hue: CGFloat, saturation: CGFloat, brightness: CGFloat) {
