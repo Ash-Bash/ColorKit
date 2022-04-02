@@ -42,6 +42,7 @@ public extension Color {
         )
     }
     
+    // Creates a Color from a CMYK Values
     init(cyan: Double, magenta: Double, yellow: Double, black: Double, opacity: Double = 1.0) {
         let r = (1 - cyan) * (1 - black)
         let g = (1 - magenta) * (1 - black)
