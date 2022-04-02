@@ -73,7 +73,7 @@ public extension Color {
     
     static func darkness(color: Color, factor: Double) -> Color {
         
-        let coms = color.components()
+        let coms = color.toRGBAComponents()
         var red = CGFloat(coms.r * 255)
         var green = CGFloat(coms.g * 255)
         var blue = CGFloat(coms.b * 255)
@@ -103,7 +103,7 @@ public extension Color {
     
     func darkness(factor: Double) -> Color {
         
-        let coms = self.components()
+        let coms = self.toRGBAComponents()
         var red = CGFloat(coms.r * 255)
         var green = CGFloat(coms.g * 255)
         var blue = CGFloat(coms.b * 255)

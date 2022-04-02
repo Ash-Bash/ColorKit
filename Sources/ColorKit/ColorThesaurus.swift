@@ -20,7 +20,7 @@ public class ColorThesaurus  {
     
     public static func closestMatch(color: Color) -> ColorMatch {
         
-        let com = color.components()
+        let com = color.toRGBAComponents()
         let value: ColorName = ColorName(Double(com.r), Double(com.g), Double(com.b), Double(com.a))
         
         return self.match(value: value)

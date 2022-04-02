@@ -97,17 +97,17 @@ public class ColorContext: ObservableObject {
     }
     
     private func didHSBChanged() {
-        if self.components.red != Double(self.color.components().r) {
-            self.components.red = Double(self.color.components().r)
+        if self.components.red != Double(self.color.components().red) {
+            self.components.red = Double(self.color.components().red)
         }
-        if self.components.green != Double(self.color.components().g) {
-            self.components.green = Double(self.color.components().g)
+        if self.components.green != Double(self.color.components().green) {
+            self.components.green = Double(self.color.components().green)
         }
-        if self.components.blue != Double(self.color.components().b) {
-            self.components.blue = Double(self.color.components().b)
+        if self.components.blue != Double(self.color.components().blue) {
+            self.components.blue = Double(self.color.components().blue)
         }
-        if self.components.alpha != Double(self.color.components().a) {
-            self.components.alpha = Double(self.color.components().a)
+        if self.components.alpha != Double(self.color.components().alpha) {
+            self.components.alpha = Double(self.color.components().alpha)
         }
     }
     
@@ -214,10 +214,10 @@ public class ColorComponent: ObservableObject {
     
     public init(color: Color = Color.random()) {
         self.sampleColor = color
-        self.red = Double(color.components().r)
-        self.green = Double(color.components().g)
-        self.blue = Double(color.components().b)
-        self.alpha = Double(color.components().a)
+        self.red = Double(color.components().red)
+        self.green = Double(color.components().green)
+        self.blue = Double(color.components().blue)
+        self.alpha = Double(color.components().alpha)
         self.hue = Double(color.components().hue)
         self.saturation = Double(color.components().saturation)
         self.brightness = Double(color.components().brightness)
