@@ -740,7 +740,7 @@ public extension Color {
         )
     }
     
-    func components() -> (red: Double, green: Double, blue: Double, alpha: Double, hue: Double, saturation: Double, brightness: Double, cyan: Double, magenta: Double, yellow: Double, black: Double) {
+    func componentsAsDouble() -> (red: Double, green: Double, blue: Double, alpha: Double, hue: Double, saturation: Double, brightness: Double, cyan: Double, magenta: Double, yellow: Double, black: Double) {
         
         return (Double(self.toRGBAComponents().r),
                 Double(self.toRGBAComponents().g),
