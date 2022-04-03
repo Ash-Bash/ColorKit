@@ -752,7 +752,7 @@ public extension Color {
                 Double(self.toCMYKComponents().c),
                 Double(self.toCMYKComponents().m),
                 Double(self.toCMYKComponents().y),
-                Double(self.toCMYKComponents().k)ß
+                Double(self.toCMYKComponents().k)
         )
     }
 }
