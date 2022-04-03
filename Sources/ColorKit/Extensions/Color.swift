@@ -739,4 +739,20 @@ public extension Color {
                 self.toCMYKComponents().k
         )
     }
+    
+    func components() -> (red: Double, green: Double, blue: Double, alpha: Double, hue: Double, saturation: Double, brightness: Double, cyan: Double, magenta: Double, yellow: Double, black: Double) {
+        
+        return (Double(self.toRGBAComponents().r),
+                Double(self.toRGBAComponents().g),
+                Double(self.toRGBAComponents().b),
+                Double(self.toRGBAComponents().a),
+                Double(self.toHSBComponents().hue),
+                Double(self.toHSBComponents().saturation),
+                Double(self.toHSBComponents().brightness),
+                Double(self.toCMYKComponents().c),
+                Double(self.toCMYKComponents().m),
+                Double(self.toCMYKComponents().y),
+                Double(self.toCMYKComponents().k)ß
+        )
+    }
 }
