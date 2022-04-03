@@ -63,6 +63,100 @@ public extension Color {
         self = Color(cyan: cyan, magenta: magenta, yellow: yellow, black: black)
     }
     
+    // Changes a Single RGB, HSB or CMYK Color Channel
+    mutating func set(red: Double) {
+        let green: Double = self.components().green
+        let blue: Double = self.components().blue
+        let alpha: Double = self.components().alpha
+        
+        self = Color(.sRGB, red: red, green: green, blue: blue, opacity: alpha)
+    }
+    
+    mutating func set(green: Double) {
+        let red: Double = self.components().red
+        let blue: Double = self.components().blue
+        let alpha: Double = self.components().alpha
+        
+        self = Color(.sRGB, red: red, green: green, blue: blue, opacity: alpha)
+    }
+    
+    mutating func set(blue: Double) {
+        let red: Double = self.components().red
+        let green: Double = self.components().green
+        let alpha: Double = self.components().alpha
+        
+        self = Color(.sRGB, red: red, green: green, blue: blue, opacity: alpha)
+    }
+    
+    mutating func set(alpha: Double) {
+        let red: Double = self.components().red
+        let green: Double = self.components().green
+        let blue: Double = self.components().blue
+        
+        self = Color(.sRGB, red: red, green: green, blue: blue, opacity: alpha)
+    }
+    
+    mutating func set(hue: Double) {
+        let saturation: Double = self.components().saturation
+        let brightness: Double = self.components().brightness
+        let alpha: Double = self.components().alpha
+        
+        self = Color(hue: hue, saturation: saturation, brightness: brightness, opacity: alpha)
+    }
+    
+    mutating func set(saturation: Double) {
+        let hue: Double = self.components().hue
+        let brightness: Double = self.components().brightness
+        let alpha: Double = self.components().alpha
+        
+        self = Color(hue: hue, saturation: saturation, brightness: brightness, opacity: alpha)
+    }
+    
+    mutating func set(brightness: Double) {
+        let hue: Double = self.components().hue
+        let saturation: Double = self.components().saturation
+        let alpha: Double = self.components().alpha
+        
+        self = Color(hue: hue, saturation: saturation, brightness: brightness, opacity: alpha)
+    }
+    
+    mutating func set(cyan: Double) {
+        let magenta: Double = self.components().magenta
+        let yellow: Double = self.components().yellow
+        let black: Double = self.components().black
+        let alpha: Double = self.components().alpha
+        
+        self = Color(cyan: cyan, magenta: magenta, yellow: yellow, black: black, opacity: alpha)
+    }
+    
+    mutating func set(magenta: Double) {
+        let cyan: Double = self.components().cyan
+        let yellow: Double = self.components().yellow
+        let black: Double = self.components().black
+        let alpha: Double = self.components().alpha
+        
+        self = Color(cyan: cyan, magenta: magenta, yellow: yellow, black: black, opacity: alpha)
+    }
+    
+    mutating func set(yellow: Double) {
+        let cyan: Double = self.components().cyan
+        let magenta: Double = self.components().magenta
+        let black: Double = self.components().black
+        let alpha: Double = self.components().alpha
+        
+        self = Color(cyan: cyan, magenta: magenta, yellow: yellow, black: black, opacity: alpha)
+    }
+    
+    mutating func set(black: Double) {
+        let cyan: Double = self.components().cyan
+        let magenta: Double = self.components().magenta
+        let yellow: Double = self.components().yellow
+        let alpha: Double = self.components().alpha
+        
+        self = Color(cyan: cyan, magenta: magenta, yellow: yellow, black: black, opacity: alpha)
+    }
+    ///End of mutating Colors or Color Channels
+    
     static func random() -> Color {
           let hue : CGFloat = CGFloat(arc4random() % 256) / 256 // use 256 to get full range from 0.0 to 1.0
           let saturation : CGFloat = CGFloat(arc4random() % 128) / 256 + 0.5 // from 0.5 to 1.0 to stay away from white
